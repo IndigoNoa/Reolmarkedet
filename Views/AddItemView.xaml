@@ -4,9 +4,95 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Reolmarkedet.Views"
+        xmlns:vm="clr-namespace:Reolmarkedet.ViewModels"
         mc:Ignorable="d"
         Title="AddItemView" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+	    <Window.DataContext>
+   		<vm:VM_AddItem/>
+    	</Window.DataContext>
+	<Window.Resources>
+		<!-- Afrundede input-felter (gælder alle TextBox i vinduet) -->
+		<Style TargetType="TextBox">
+			<Setter Property="Background" Value="White"/>
+			<Setter Property="BorderBrush" Value="#3A5A2A"/>
+			<Setter Property="Padding" Value="8,0"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="TextBox">
+						<Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="1" CornerRadius="8"
+                            Padding="{TemplateBinding Padding}">
+							<ScrollViewer x:Name="PART_ContentHost"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<!-- Afrundede knapper (gælder alle Button i vinduet) -->
+		<Style TargetType="Button">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Border Background="{TemplateBinding Background}" CornerRadius="8">
+							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</Window.Resources>
+	<Grid Background="#D8C5B9">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+
+		<!-- Banner -->
+		<Border Grid.Row="0" Background="#3A5A2A" Height="50">
+			<TextBlock Text="Reolmarkedet" Foreground="White" FontSize="20" FontWeight="Bold"
+                   VerticalAlignment="Center" Margin="40,0,0,0"/>
+		</Border>
+
+		<!-- Indhold -->
+		<Grid Grid.Row="1">
+			<TextBlock Text="Opret vare" FontSize="24" FontWeight="Bold"
+                   HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,30,0,0"/>
+
+			<TextBlock Text="Reolnummer" FontWeight="Bold" FontSize="12"
+                   HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,90,0,0"/>
+			<TextBox Text="{Binding ShelfID, UpdateSourceTrigger=PropertyChanged}"
+                 Width="250" Height="30"
+                 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,110,0,0"/>
+
+			<TextBlock FontWeight="Bold" FontSize="12"
+                   HorizontalAlignment="Left" VerticalAlignment="Top" Margin="320,90,0,0">
+            <Run Text="Lejer"/>
+            <Run Text="(auto udfyldt)" FontStyle="Italic"/>
+			</TextBlock>
+			<TextBox Text="{Binding RenterName}" IsReadOnly="True"
+                 Width="250" Height="30"
+                 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="320,110,0,0"/>
+
+			<TextBlock Text="Pris" FontWeight="Bold" FontSize="12"
+                   HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,160,0,0"/>
+			<TextBox Text="{Binding ItemPrice, UpdateSourceTrigger=PropertyChanged}"
+                 Width="140" Height="30"
+                 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,180,0,0"/>
+
+			<TextBlock Text="Beskrivelse" FontWeight="Bold" FontSize="12"
+                   HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,230,0,0"/>
+			<TextBox Text="{Binding ItemDescription, UpdateSourceTrigger=PropertyChanged}"
+                 Width="530" Height="80" TextWrapping="Wrap" AcceptsReturn="True"
+                 VerticalContentAlignment="Top" Padding="8,6"
+                 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,250,0,0"/>
+
+			<Button Content="Næste" Command="{Binding NextCommand}"
+                Width="150" Height="34" Background="#3A5A2A" Foreground="White" FontWeight="Bold"
+                HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,30"/>
+		</Grid>
+	</Grid>
 </Window>
