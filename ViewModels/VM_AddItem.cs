@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using Reolmarkedet.Commands;
 using System.Windows.Input;
+using System.Linq;
+using System.Windows;
+using Reolmarkedet.Views;
 
 
 namespace Reolmarkedet.ViewModels
@@ -91,7 +94,15 @@ namespace Reolmarkedet.ViewModels
 		}
 
 		// Execute-metoder: private, som i DCD'et, undtagen ExecuteShowRenterName som er public
-		private void ExecuteNext() { }
+		private void ExecuteNext()
+		{
+			// Åbner "Vare oprettet" og giver den denne ViewModel, så værdierne følger med
+			var itemCreatedView = new ItemCreatedView { DataContext = this };
+			itemCreatedView.Show();
+
+			// Lukker Opret vare-vinduet (efter det nye er åbnet, så programmet ikke lukker)
+			Application.Current.Windows.OfType<AddItemView>().FirstOrDefault()?.Close();
+		}
 		private void ExecuteHome() { }
 		private void ExecutePrintLabel() { }
 		private void ExecuteSearchRenterName() { }
