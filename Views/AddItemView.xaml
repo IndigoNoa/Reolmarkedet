@@ -77,11 +77,19 @@
                  Width="250" Height="30"
                  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="320,110,0,0"/>
 
+			<!-- Navn på vare (bundet til ItemName) -->
+			<TextBlock Text="Navn på vare" FontWeight="Bold" FontSize="12"
+           HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,160,0,0"/>
+			<TextBox Text="{Binding ItemName, UpdateSourceTrigger=PropertyChanged}"
+         Width="250" Height="30"
+         HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,180,0,0"/>
+
+			<!-- Pris (bundet til ItemPrice) -->
 			<TextBlock Text="Pris" FontWeight="Bold" FontSize="12"
-                   HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,160,0,0"/>
+           HorizontalAlignment="Left" VerticalAlignment="Top" Margin="320,160,0,0"/>
 			<TextBox Text="{Binding ItemPrice, UpdateSourceTrigger=PropertyChanged}"
-                 Width="140" Height="30"
-                 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,180,0,0"/>
+         Width="140" Height="30"
+         HorizontalAlignment="Left" VerticalAlignment="Top" Margin="320,180,0,0"/>
 
 			<TextBlock Text="Beskrivelse" FontWeight="Bold" FontSize="12"
                    HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,230,0,0"/>
