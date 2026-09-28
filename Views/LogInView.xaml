@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Reolmarkedet.Views"
         mc:Ignorable="d"
         Title="LogInView" Height="450" Width="800">
-    <Grid>
-        
+    <Grid Background="#D8C5B9">
+        <Border BorderBrush="Black" BorderThickness="1" Width="250" Height="280" CornerRadius="8,8,8,8" HorizontalAlignment="Center" VerticalAlignment="Center" Background="White"/>
+
     </Grid>
 </Window>

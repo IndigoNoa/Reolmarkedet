@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Reolmarkedet.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -17,9 +18,23 @@ namespace Reolmarkedet.Views
     /// </summary>
     public partial class LogInView : Window
     {
+
+        private VM_LogIn _viewModel; //Reference til LoginViewModel'en som View'et arbejder sammen med
+
         public LogInView()
         {
             InitializeComponent();
+
+            _viewModel = new VM_LogIn(); //Opretter LoginViewModel'en som håndterer loginlogikken
+
+            _viewModel.LoginSuccessful += OnLoginSuccessful; //Forbinder View'et med eventet, så det reagerer, når login lykkedes
+        }
+
+        private void OnLoginSuccessful(object sender, EventArgs e) //Håndterer hvad der sker når login lykkedes
+        {
+            MenuView menuView = new MenuView(); //Initialiserer MenuView, som vises efter et vellykket login
+            menuView.Show(); //Viser MenuView efter et vellykket login
+            Close(); //Lukker LoginView efter et vellykket login
         }
     }
 }
