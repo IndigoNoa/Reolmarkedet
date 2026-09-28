@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Reolmarkedet.Models
 {
-    class Employees
+    public class Employees
     {
     }
 }
