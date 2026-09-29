@@ -7,6 +7,9 @@ using Reolmarkedet.Commands;
 using Reolmarkedet.Models;
 using System.Collections.ObjectModel;
 using Reolmarkedet.Models;
+using System.Linq;
+using System.Windows;
+using Reolmarkedet.Views;
 
 namespace Reolmarkedet.ViewModels
 {
@@ -22,6 +25,8 @@ namespace Reolmarkedet.ViewModels
 		private string _paymentID;
 		private PaymentMethod _paymentMethod;
 		private string _thankYouMessage;
+		private DateTime _saleDate;
+		private string _servedBy;
 
 		public string ItemID
 		{
@@ -75,6 +80,19 @@ namespace Reolmarkedet.ViewModels
 		{
 			get => _thankYouMessage;
 			set => SetProperty(ref _thankYouMessage, value);
+
+		}
+
+		public DateTime SaleDate
+		{
+			get => _saleDate;
+			set => SetProperty(ref _saleDate, value);
+		}
+
+		public string ServedBy
+		{
+			get => _servedBy;
+			set => SetProperty(ref _servedBy, value);
 		}
 
 		// Kurven: de varer der er scannet/indtastet til dette køb
@@ -101,18 +119,56 @@ namespace Reolmarkedet.ViewModels
 		}
 
 		// Execute-metoder (tomme skeletter for nu)
-		private void ExecuteGoToPaymentMethod() { }
-		private void ExecutePayment() { }
+		private void ExecuteGoToPaymentMethod()
+		{
+			var oldWindow = Application.Current.Windows.OfType<CheckoutView>().FirstOrDefault();
+			var paymentView = new PaymentMethodView { DataContext = this };
+			CopyWindowPosition(oldWindow, paymentView);
+			paymentView.Show();
+			oldWindow?.Close();
+		}
+		private void ExecutePayment()
+		{
+			var oldWindow = Application.Current.Windows.OfType<PaymentMethodView>().FirstOrDefault();
+			var receiptView = new ReceiptView { DataContext = this };
+			CopyWindowPosition(oldWindow, receiptView);
+			receiptView.Show();
+			oldWindow?.Close();
+		}
 		private void ExecutePrintReceipt() { }
-		private void ExecuteReturnToCheckout() { }
+		private void ExecuteReturnToCheckout()
+		{
+			// Bruges både af "Tilbage" (fra Betaling) og "Afslut uden kvittering" (fra Kvittering)
+			var oldWindow = Application.Current.Windows.OfType<Window>()
+				.FirstOrDefault(w => w is PaymentMethodView || w is ReceiptView);
+			var checkoutView = new CheckoutView { DataContext = this };
+			CopyWindowPosition(oldWindow, checkoutView);
+			checkoutView.Show();
+			oldWindow?.Close();
+		}
+
+		// Hjælpemetode: kopierer position/størrelse, så skiftet føles som et sideskift (samme trick som i går)
+		private void CopyWindowPosition(Window oldWindow, Window newWindow)
+		{
+			if (oldWindow == null) return;
+			newWindow.WindowStartupLocation = WindowStartupLocation.Manual;
+			newWindow.Left = oldWindow.Left;
+			newWindow.Top = oldWindow.Top;
+			newWindow.Width = oldWindow.Width;
+			newWindow.Height = oldWindow.Height;
+			newWindow.WindowState = oldWindow.WindowState;
+		}
 		private void ExecuteScanBarcode() { }
 
-		private void ExecuteSelectPaymentMethod(string method) // Til valg af betalingsmetode i PaymentMethodView.xaml
+		private void ExecuteSelectPaymentMethod(string method)
 		{
 			if (method == "Kontant")
 				PaymentMethod = PaymentMethod.Kontant;
 			else if (method == "MobilePay")
 				PaymentMethod = PaymentMethod.MobilePay;
+
+			ExecutePayment();   // Går direkte videre til kvitteringen
+								// Vi behøver ikke at vise selve betalingsprocessen. Ovenstående metode går bare videre til kvittering (altså at vi "registrerer betalingen")
 		}
 	}
 
