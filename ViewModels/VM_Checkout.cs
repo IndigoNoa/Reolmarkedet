@@ -81,12 +81,14 @@ namespace Reolmarkedet.ViewModels
 		public ObservableCollection<Items> ScannedCheckoutItems { get; } = new ObservableCollection<Items>(); // Observable collection, da en normal List ikke vil opdatere UI'et automatisk
 
 
-		// Commands
+		// Commands (Knapper)
 		public ICommand GoToPaymentMethodCommand { get; }
 		public ICommand PayCommand { get; }
 		public ICommand PrintReceiptCommand { get; }
 		public ICommand ReturnToCheckoutCommand { get; }
 		public ICommand ScanBarcodeCommand { get; }
+		public ICommand SelectPaymentMethodCommand { get; }
+
 
 		public VM_Checkout()
 		{
@@ -95,6 +97,7 @@ namespace Reolmarkedet.ViewModels
 			PrintReceiptCommand = new RelayCommand(ExecutePrintReceipt);
 			ReturnToCheckoutCommand = new RelayCommand(ExecuteReturnToCheckout);
 			ScanBarcodeCommand = new RelayCommand(ExecuteScanBarcode);
+			SelectPaymentMethodCommand = new RelayCommand(param => ExecuteSelectPaymentMethod(param as string));
 		}
 
 		// Execute-metoder (tomme skeletter for nu)
@@ -103,6 +106,14 @@ namespace Reolmarkedet.ViewModels
 		private void ExecutePrintReceipt() { }
 		private void ExecuteReturnToCheckout() { }
 		private void ExecuteScanBarcode() { }
+
+		private void ExecuteSelectPaymentMethod(string method) // Til valg af betalingsmetode i PaymentMethodView.xaml
+		{
+			if (method == "Kontant")
+				PaymentMethod = PaymentMethod.Kontant;
+			else if (method == "MobilePay")
+				PaymentMethod = PaymentMethod.MobilePay;
+		}
 	}
 
 	public enum PaymentMethod // Valgmuligheder for betalinger (vi kan evt. tilføje mere, hvis vi mener det er nødvendigt)
