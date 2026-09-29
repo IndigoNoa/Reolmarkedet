@@ -6,6 +6,8 @@ using System.Windows.Input;
 using System.Linq;
 using System.Windows;
 using Reolmarkedet.Views;
+using Reolmarkedet.Models;
+using Reolmarkedet.Repositories;
 
 
 namespace Reolmarkedet.ViewModels
@@ -22,8 +24,9 @@ namespace Reolmarkedet.ViewModels
         private decimal _itemPrice;
         private int _barcode;
         private string _itemDescription;
+		private readonly IItemsRepository _itemsRepository = new JsonItemsRepository();
 
-        public string ShelfID
+		public string ShelfID
         {
             get => _shelfID;                                            // Returnerer den gemte værdi
             set => SetProperty(ref _shelfID, value);                    // Gemmer værdien, og giver UI'et besked om ændringen
@@ -96,12 +99,46 @@ namespace Reolmarkedet.ViewModels
 		// Execute-metoder: private, som i DCD'et, undtagen ExecuteShowRenterName som er public
 		private void ExecuteNext()
 		{
-			// Åbner "Vare oprettet" og giver den denne ViewModel, så værdierne følger med
-			var itemCreatedView = new ItemCreatedView { DataContext = this };
-			itemCreatedView.Show();
+			var allItems = _itemsRepository.GetAll();
 
-			// Lukker Opret vare-vinduet (efter det nye er åbnet, så programmet ikke lukker)
-			Application.Current.Windows.OfType<AddItemView>().FirstOrDefault()?.Close();
+			// Fortløbende ID baseret på hvor mange varer der allerede findes
+			int nextNumber = allItems.Count + 1;
+			string newItemID = "I_" + nextNumber.ToString("D2");   // D2 giver to cifre: 01, 02, 03...
+
+			// Midlertidig simpel stregkode, indtil en rigtig stregkode-løsning er på plads
+			int newBarcode = 100000 + nextNumber;
+
+			var newItem = new Items
+			{
+				ItemID = newItemID,
+				ItemName = ItemName,
+				ShelfID = ShelfID,
+				ItemPrice = ItemPrice,
+				ItemDescription = ItemDescription,
+				Barcode = newBarcode
+			};
+
+			allItems.Add(newItem);
+			_itemsRepository.SaveAll(allItems);
+
+			ItemID = newItem.ItemID;
+			Barcode = newItem.Barcode;   
+
+			var oldWindow = Application.Current.Windows.OfType<AddItemView>().FirstOrDefault();
+			var itemCreatedView = new ItemCreatedView { DataContext = this };
+
+			if (oldWindow != null)
+			{
+				itemCreatedView.WindowStartupLocation = WindowStartupLocation.Manual;
+				itemCreatedView.Left = oldWindow.Left;
+				itemCreatedView.Top = oldWindow.Top;
+				itemCreatedView.Width = oldWindow.Width;
+				itemCreatedView.Height = oldWindow.Height;
+				itemCreatedView.WindowState = oldWindow.WindowState;
+			}
+
+			itemCreatedView.Show();
+			oldWindow?.Close();
 		}
 		private void ExecuteHome() { }
 		private void ExecutePrintLabel() { }
