@@ -51,9 +51,11 @@
 
 			<!-- Scan / indtast (bundet til ScanBarcodeCommand) -->
 			<StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,15">
+				<TextBox Text="{Binding BarCode, UpdateSourceTrigger=PropertyChanged}"
+				 Width="150" Height="30" Margin="0,0,10,0"/>
 				<Button Content="Scan stregkode" Command="{Binding ScanBarcodeCommand}"
-                        Background="#E7EEDD" BorderBrush="#3A5A2A" Foreground="#3A5A2A" FontWeight="Bold"
-                        Height="40" Padding="10,0" Margin="0,0,10,0"/>
+				 Background="#E7EEDD" BorderBrush="#3A5A2A" Foreground="#3A5A2A" FontWeight="Bold"
+			     Height="40" Padding="10,0" Margin="0,0,10,0"/>
 				<Button Content="Indtast varenummer"
                         Background="#E7EEDD" BorderBrush="#3A5A2A" Foreground="#3A5A2A" FontWeight="Bold"
                         Height="40" Padding="10,0"/>

@@ -5,11 +5,11 @@ using System.Text;
 using System.Windows.Input;
 using Reolmarkedet.Commands;
 using Reolmarkedet.Models;
-using System.Collections.ObjectModel;
-using Reolmarkedet.Models;
 using System.Linq;
 using System.Windows;
 using Reolmarkedet.Views;
+using Reolmarkedet.Repositories;
+
 
 namespace Reolmarkedet.ViewModels
 {
@@ -27,6 +27,7 @@ namespace Reolmarkedet.ViewModels
 		private string _thankYouMessage;
 		private DateTime _saleDate;
 		private string _servedBy;
+		private readonly IItemsRepository _itemsRepository = new JsonItemsRepository();
 
 		public string ItemID
 		{
@@ -158,7 +159,21 @@ namespace Reolmarkedet.ViewModels
 			newWindow.Height = oldWindow.Height;
 			newWindow.WindowState = oldWindow.WindowState;
 		}
-		private void ExecuteScanBarcode() { }
+		private void ExecuteScanBarcode()
+		{
+			if (!int.TryParse(BarCode, out int barcodeNumber))
+				return;   // Ugyldigt input, gør ingenting (kunne evt. vise en fejlbesked senere)
+
+			var allItems = _itemsRepository.GetAll();
+			var foundItem = allItems.FirstOrDefault(i => i.Barcode == barcodeNumber);
+
+			if (foundItem == null)
+				return;   // Varen findes ikke, gør ingenting (kunne evt. vise en fejlbesked senere)
+
+			ScannedCheckoutItems.Add(foundItem);
+			AmountToPay = ScannedCheckoutItems.Sum(i => i.ItemPrice);   // Genberegner total
+			BarCode = string.Empty;   // Rydder feltet, klar til næste scan
+		}
 
 		private void ExecuteSelectPaymentMethod(string method)
 		{
