@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Reolmarkedet.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -20,6 +21,8 @@ namespace Reolmarkedet.Views
         public ShelvesOverviewView()
         {
             InitializeComponent();
+
+            DataContext = new VM_ShelvesOverview();
         }
     }
 }

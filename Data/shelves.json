@@ -1,1 +1,562 @@
-﻿[ ]
+﻿[
+    {
+      "RenterID": "",
+      "ShelfID": "1",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "2",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "3",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "4",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "5",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "6",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "7",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "8",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "9",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "10",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "11",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "12",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "13",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "14",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "15",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "16",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "17",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "18",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "19",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "20",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "21",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "22",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "23",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "24",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "25",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "26",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "27",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "28",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "29",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "30",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "31",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "32",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "33",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "34",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "35",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "36",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "37",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "38",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "39",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "40",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "41",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "42",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "43",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "44",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "45",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "46",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "47",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "48",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "49",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "50",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "51",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "52",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "53",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "54",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "55",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "56",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "57",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "58",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "59",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "60",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "61",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "62",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "63",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "64",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "65",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "66",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "67",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "68",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "69",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "70",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "71",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "72",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "73",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "74",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "75",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "76",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "77",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "78",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "79",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    },
+    {
+      "RenterID": "",
+      "ShelfID": "80",
+      "ShelfType": "",
+      "ShelfStatus": "Ledig",
+      "Period": "0001-01-01T00:00:00"
+    }
+]

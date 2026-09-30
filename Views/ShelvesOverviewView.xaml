@@ -5,8 +5,147 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Reolmarkedet.Views"
         mc:Ignorable="d"
-        Title="ShelvesOverviewView" Height="450" Width="800">
+        Title="Reoloversigt" 
+        Height="450" 
+        Width="800"
+        Background="#D8C5B9">
+    
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="55"/>
+        </Grid.RowDefinitions>
         
+        <!-- TOPPEN -->
+        <Grid Grid.Row="0"
+              Background="#3A5A2A">
+
+            <TextBlock Text="Reoloversigt"
+                         Foreground="White"
+                         FontSize="24"
+                         FontWeight="Bold"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center"/>
+        </Grid>
+        
+        <!-- Selve reoloversigten -->
+        <Grid Grid.Row="1"
+            Margin="20,10,20,5">
+              
+              <ItemsControl ItemsSource="{Binding ShelfList}">
+                  <ItemsControl.ItemsPanel>
+                      <ItemsPanelTemplate>
+                          <UniformGrid Columns="10"
+                                       Rows="8"/>
+                      </ItemsPanelTemplate>
+                  </ItemsControl.ItemsPanel>
+                          
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding ShelfID}"
+                                Margin="3"
+                                FontWeight="Bold"
+                                Foreground="#3A5A2A">
+                            <Button.Style>
+                                <Style TargetType="Button">
+
+                                    <!-- Ledig -->
+                                    <Setter Property="Background" Value="White"/>
+                                    <Setter Property="BorderBrush" Value="#3A5A2A"/>
+
+                                    <Style.Triggers>
+
+                                        <!-- Udlejet -->
+                                        <DataTrigger Binding="{Binding ShelfStatus}"
+                             Value="Udlejet">
+                                            <Setter Property="Background" Value="#D3D3D3"/>
+                                            <Setter Property="BorderBrush" Value="#A9A9A9"/>
+                                        </DataTrigger>
+
+                                        <!-- Snart ledig / opsagt -->
+                                        <DataTrigger Binding="{Binding ShelfStatus}"
+                             Value="Snart ledig / opsagt">
+                                            <Setter Property="Background" Value="#F5E6B3"/>
+                                            <Setter Property="BorderBrush" Value="#D8C5B9"/>
+                                        </DataTrigger>
+
+                                    </Style.Triggers>
+
+                                </Style>
+                            </Button.Style>
+                        </Button>
+
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                          
+                    </ItemsControl>
+        </Grid>
+
+        <!-- BUNDEN -->
+        <Grid Grid.Row="2">
+
+            <!-- Statusforklaring -->
+            <StackPanel Orientation="Horizontal"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Margin="20,0,0,0">
+
+                <!-- Ledig -->
+                <Border Width="18"
+                Height="18"
+                Background="White"
+                BorderBrush="#3A5A2A"
+                BorderThickness="1"
+                CornerRadius="4"
+                Margin="0,0,5,0"/>
+
+                <TextBlock Text="Ledig"
+                   VerticalAlignment="Center"
+                   Margin="0,0,25,0"/>
+
+                <!-- Udlejet -->
+                <Border Width="18"
+                Height="18"
+                Background="#D3D3D3"
+                BorderBrush="#A9A9A9"
+                BorderThickness="1"
+                CornerRadius="4"
+                Margin="0,0,5,0"/>
+
+                <TextBlock Text="Udlejet"
+                   VerticalAlignment="Center"
+                   Margin="0,0,25,0"/>
+
+                <!-- Snart ledig / opsagt -->
+                <Border Width="18"
+                Height="18"
+                Background="#F5E6B3"
+                BorderBrush="#D8C5B9"
+                BorderThickness="1"
+                CornerRadius="4"
+                Margin="0,0,5,0"/>
+
+                <TextBlock Text="Snart ledig / opsagt"
+                   VerticalAlignment="Center"/>
+
+            </StackPanel>
+
+            <!-- Home -->
+            <Button Content="Home"
+            Command="{Binding HomeCommand}"
+            Width="150"
+            Height="35"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Margin="0,0,20,0"
+            Background="#3A5A2A"
+            Foreground="White"
+            FontWeight="Bold"
+            BorderThickness="0"/>
+
+        </Grid>
+
+
     </Grid>
 </Window>
