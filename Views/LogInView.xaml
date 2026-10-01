@@ -7,7 +7,16 @@
         mc:Ignorable="d"
         Title="LogInView" Height="450" Width="800">
     <Grid Background="#D8C5B9">
-        <Border BorderBrush="Black" BorderThickness="1" Width="250" Height="280" CornerRadius="8,8,8,8" HorizontalAlignment="Center" VerticalAlignment="Center" Background="White"/>
+        <Border BorderThickness="1" Width="250" Height="280" CornerRadius="8,8,8,8" HorizontalAlignment="Center" VerticalAlignment="Center" Background="White">
+            <StackPanel>
+                <TextBlock Text="Reolmarkedet" HorizontalAlignment="Center" FontSize="24" FontWeight="SemiBold" />
+                <TextBlock TextWrapping="Wrap" Text="Log in for at fortsætte" HorizontalAlignment="Center" Foreground="#777777"/>
+                <TextBlock TextWrapping="Wrap" Text="Brugernavn"/>
+                <TextBox TextWrapping="Wrap" Text="" Width="120"/>
+
+            </StackPanel>
+
+        </Border>
 
     </Grid>
 </Window>
