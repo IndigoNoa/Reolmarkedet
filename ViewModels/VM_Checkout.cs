@@ -28,6 +28,8 @@ namespace Reolmarkedet.ViewModels
 		private DateTime _saleDate;
 		private string _servedBy;
 		private readonly IItemsRepository _itemsRepository = new JsonItemsRepository();
+		private readonly ISalesRepository _salesRepository = new JsonSalesRepository();
+		private readonly IPaymentsRepository _paymentsRepository = new JsonPaymentsRepository();
 
 		public string ItemID
 		{
@@ -130,6 +132,57 @@ namespace Reolmarkedet.ViewModels
 		}
 		private void ExecutePayment()
 		{
+			// Opretter betalingen
+			var allPayments = _paymentsRepository.GetAll();
+			string newPaymentID = "P_" + (allPayments.Count + 1).ToString("D2");
+
+			var payment = new Payment
+			{
+				PaymentID = newPaymentID,
+				PaymentMethod = PaymentMethod,
+				AmountPaid = AmountToPay,
+				PaymentDate = DateTime.Now
+			};
+
+			allPayments.Add(payment);
+			_paymentsRepository.SaveAll(allPayments);
+
+			// Markerer de solgte varer som IsSold i items.json
+			var allItems = _itemsRepository.GetAll();
+			foreach (var soldItem in ScannedCheckoutItems)
+			{
+				var matchingItem = allItems.FirstOrDefault(i => i.ItemID == soldItem.ItemID);
+				if (matchingItem != null)
+					matchingItem.IsSold = true;
+			}
+			_itemsRepository.SaveAll(allItems);
+
+			// Opretter ét salg per vare i kurven, alle med samme SaleID
+			var allSales = _salesRepository.GetAll();
+			string newSaleID = "S_" + (allSales.Count + 1).ToString("D2");
+
+			foreach (var item in ScannedCheckoutItems)
+			{
+				allSales.Add(new Sales
+				{
+					SaleID = newSaleID,
+					ItemID = item.ItemID,
+					ItemName = item.ItemName,
+					ShelfID = item.ShelfID,
+					ItemPrice = item.ItemPrice,
+					PaymentID = newPaymentID,
+					SaleDate = DateTime.Now
+				});
+			}
+
+			_salesRepository.SaveAll(allSales);
+
+			// Gemmer felter til kvitteringen
+			PaymentID = newPaymentID;
+			SaleDate = DateTime.Now;
+			ServedBy = "Reolmarkedet";   // Midlertidig, til login-flowet kan levere den rigtige medarbejder
+
+			// Navigerer videre til kvitteringen (uændret fra før)
 			var oldWindow = Application.Current.Windows.OfType<PaymentMethodView>().FirstOrDefault();
 			var receiptView = new ReceiptView { DataContext = this };
 			CopyWindowPosition(oldWindow, receiptView);
@@ -187,9 +240,4 @@ namespace Reolmarkedet.ViewModels
 		}
 	}
 
-	public enum PaymentMethod // Valgmuligheder for betalinger (vi kan evt. tilføje mere, hvis vi mener det er nødvendigt)
-	{
-		Kontant, 
-		MobilePay
-	}
 }

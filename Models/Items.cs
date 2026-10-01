@@ -12,5 +12,6 @@ namespace Reolmarkedet.Models
 		public int Barcode { get; set; }
 		public decimal ItemPrice { get; set; }
 		public string ItemDescription { get; set; }
+		public bool IsSold { get; set; }
 	}
 }

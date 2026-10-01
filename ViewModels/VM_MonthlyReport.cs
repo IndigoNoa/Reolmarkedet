@@ -156,6 +156,49 @@ namespace Reolmarkedet.ViewModels
 		private void ExecuteConfirmReport() { }
 		private void ExecuteReportOverview() { }
 
+		// Hjælpemetoder: indlæser data fra repositories
+		private void ExecuteLoadRenter()
+		{
+			AllRenters.Clear();
+			foreach (var renter in _rentersRepository.GetAll())
+				AllRenters.Add(renter);
+		}
+
+		private void ExecuteLoadSales()
+		{
+			PeriodSales.Clear();
+			foreach (var sale in _salesRepository.GetAll())
+				PeriodSales.Add(sale);
+		}
+
+		private void ExecuteLoadItems()
+		{
+			// Bruges senere til at slå varenavn op ud fra ItemID på et salg
+		}
+
+		private void ExecuteMonthlyReport()
+		{
+			// Selve beregningslogikken (kommission, leje, rabat, saldo) bygges i CreateMonthlyReport()
+		}
+
+		private void ExecuteSaveReport()
+		{
+			var allReports = _monthlyReportsRepository.GetAll();
+			allReports.Add(CreateMonthlyReport());
+			_monthlyReportsRepository.SaveAll(allReports);
+		}
+
+		// De to sidste metoder fra DCD'et (ingen "Execute"-præfiks i forvejen)
+		private MonthlyReport CreateMonthlyReport()
+		{
+			return new MonthlyReport();   // Udfyldes i et senere skridt
+		}
+
+		private void CalculateRenterBalance()
+		{
+			// Selve saldo-beregningen bygges i et senere skridt
+		}
+
 	}
 
 }
