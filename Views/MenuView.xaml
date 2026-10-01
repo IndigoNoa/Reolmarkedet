@@ -5,8 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Reolmarkedet.Views"
         mc:Ignorable="d"
-        Title="MenuView" Height="450" Width="800">
+        Title="MenuView" Height="450" Width="800"
+        Background="#D8C5B9">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Border Background="#FF3A5A2A" Height="70" VerticalAlignment="Top" Grid.ColumnSpan="4">
+            <TextBlock TextWrapping="Wrap" Text="Reolmarkedet" Foreground="White" FontFamily="Candara" FontSize="32" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="30,0,0,0"/>
+        </Border>
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Menu" VerticalAlignment="Top" FontFamily="Candara" FontSize="28" FontWeight="Bold" Margin="0,90,0,0" Grid.ColumnSpan="4"/>
+<Border Grid.Column="0"
+        Width="175"
+        Height="40"
+        Background="White"
+        CornerRadius="6"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Top"
+        Margin="0,145,0,0">
+
+    <Button Content="Opret ny lejer"
+            Background="Transparent"
+            BorderBrush="{x:Null}"
+            FontFamily="Candara"
+            FontSize="12"
+            Foreground="#777777"/>
+</Border>
     </Grid>
 </Window>
