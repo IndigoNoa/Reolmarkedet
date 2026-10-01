@@ -40,9 +40,15 @@ namespace Reolmarkedet.Views
         }
 
         private void LogindButton_Click(object sender, RoutedEventArgs e)
-        { 
+        {
+            // Sender adgangskoden fra PasswordBox til ViewModel'en og starter login-kontrollen
             _viewModel.EmployeePassword = PasswordInput.Password;
             _viewModel.LoginCommand.Execute(null);
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        { 
+        Application.Current.Shutdown(); //Lukker hele programmet
         }
     }
 }

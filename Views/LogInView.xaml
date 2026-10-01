@@ -26,6 +26,7 @@
 
         </Border>
         <Button Content="×"
+                Click="CloseButton_Click"
         HorizontalAlignment="Right"
         VerticalAlignment="Top"
         Width="50"
