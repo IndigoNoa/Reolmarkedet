@@ -1,1 +1,14 @@
-﻿[ ]
+﻿[
+  {
+    "EmployeeID": "SK001",
+    "EmployeePassword": "S123"
+  },
+  {
+    "EmployeeID": "JM001",
+    "EmployeePassword": "J123"
+  },
+  {
+    "EmployeeID": "ML001",
+    "EmployeePassword": "M123"
+  }
+]
