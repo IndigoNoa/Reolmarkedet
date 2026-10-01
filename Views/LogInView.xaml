@@ -10,9 +10,14 @@
         <Border BorderThickness="1" Width="250" Height="280" CornerRadius="8,8,8,8" HorizontalAlignment="Center" VerticalAlignment="Center" Background="White">
             <StackPanel>
                 <TextBlock Text="Reolmarkedet" HorizontalAlignment="Center" FontSize="24" FontWeight="SemiBold" />
-                <TextBlock TextWrapping="Wrap" Text="Log in for at fortsætte" HorizontalAlignment="Center" Foreground="#777777"/>
+                <TextBlock TextWrapping="Wrap" Text="Log ind for at fortsætte" HorizontalAlignment="Center" Foreground="#777777"/>
                 <TextBlock TextWrapping="Wrap" Text="Brugernavn"/>
-                <TextBox TextWrapping="Wrap" Text="" Width="120"/>
+                <Border CornerRadius="6,6,6,6" Background="White" BorderBrush="#E5E5E5" Width="175" Height="30" BorderThickness="1,1,1,1">
+                    <TextBox TextWrapping="Wrap" Text="" Background="Transparent" BorderBrush="{x:Null}"/>
+                </Border>
+                <TextBlock TextWrapping="Wrap" Text="Adgangskode"/>
+                <PasswordBox Width="175" Height="30" BorderBrush="#E5E5E5"/>
+                <Button Content="Log ind" Background="#FF3A5A2A" Foreground="White" Width="175" Height="30"/>
 
             </StackPanel>
 
