@@ -13,14 +13,14 @@
                 <TextBlock TextWrapping="Wrap" Text="Log ind for at fortsætte" HorizontalAlignment="Center" Foreground="#777777" FontFamily="Candara" Margin="0,10,0,8"/>
                 <TextBlock TextWrapping="Wrap" Text="Brugernavn" FontFamily="Candara" Margin="0,10,0,5" FontWeight="Bold" HorizontalAlignment="Center" Width="175"/>
                 <Border CornerRadius="6,6,6,6" Background="White" BorderBrush="#E5E5E5" Width="175" Height="30" BorderThickness="1,1,1,1">
-                    <TextBox TextWrapping="Wrap" Text="" Background="Transparent" BorderBrush="{x:Null}"/>
+                    <TextBox TextWrapping="Wrap" Text="{Binding EmployeeID}" Background="Transparent" BorderBrush="{x:Null}"/>
                 </Border>
                 <TextBlock TextWrapping="Wrap" Text="Adgangskode" FontFamily="Candara" Margin="0,0,0,5" FontWeight="Bold" HorizontalAlignment="Center" Width="175"/>
                 <Border CornerRadius="6,6,6,6" Background="White" BorderBrush="#E5E5E5" Width="175" Height="30" BorderThickness="1,1,1,1">
-                    <PasswordBox Width="175" Height="30" Background="Transparent" BorderBrush="{x:Null}"/>
+                    <PasswordBox x:Name="PasswordInput" Width="175" Height="30" Background="Transparent" BorderBrush="{x:Null}"/>
                 </Border>
                 <Border CornerRadius="6,6,6,6" Background="#3A5A2A" Width="175" Height="30" BorderThickness="0" Margin="0,20,0,0">
-                    <Button Content="Log ind" Background="Transparent" Foreground="White" Width="175" Height="30" BorderBrush="{x:Null}" FontFamily="Candara" FontSize="14"/>
+                    <Button x:Name="LogIndButton" Click="LogindButton_Click" Content="Log ind" Background="Transparent" Foreground="White" Width="175" Height="30" BorderBrush="{x:Null}" FontFamily="Candara" FontSize="14"/>
                 </Border>
             </StackPanel>
 

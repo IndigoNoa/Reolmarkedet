@@ -27,6 +27,8 @@ namespace Reolmarkedet.Views
 
             _viewModel = new VM_LogIn(); //Opretter LoginViewModel'en som håndterer loginlogikken
 
+            DataContext = _viewModel; //Fortæller View'et, at det skal bruge LoginViewModel'en til sine "Bindings" 
+
             _viewModel.LoginSuccessful += OnLoginSuccessful; //Forbinder View'et med eventet, så det reagerer, når login lykkedes
         }
 
@@ -35,6 +37,12 @@ namespace Reolmarkedet.Views
             MenuView menuView = new MenuView(); //Initialiserer MenuView, som vises efter et vellykket login
             menuView.Show(); //Viser MenuView efter et vellykket login
             Close(); //Lukker LoginView efter et vellykket login
+        }
+
+        private void LogindButton_Click(object sender, RoutedEventArgs e)
+        { 
+            _viewModel.EmployeePassword = PasswordInput.Password;
+            _viewModel.LoginCommand.Execute(null);
         }
     }
 }
