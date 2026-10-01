@@ -4,148 +4,133 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Reolmarkedet.Views"
+        xmlns:vm="clr-namespace:Reolmarkedet.ViewModels"
         mc:Ignorable="d"
-        Title="Reoloversigt" 
-        Height="450" 
+        Title="Reoloversigt"
+        Height="520"
         Width="800"
-        Background="#D8C5B9">
-    
+        Background="#E0CFC7">
+
+    <!-- Viser VM_ShelfDetails som ShelfDetailsView -->
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:VM_ShelfDetails}">
+            <local:ShelfDetailsView/>
+        </DataTemplate>
+    </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="55"/>
+            <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
-        
+
         <!-- TOPPEN -->
-        <Grid Grid.Row="0"
-              Background="#3A5A2A">
-
-            <TextBlock Text="Reoloversigt"
-                         Foreground="White"
-                         FontSize="24"
-                         FontWeight="Bold"
-                         HorizontalAlignment="Center"
-                         VerticalAlignment="Center"/>
+        <Grid Grid.Row="0" Background="#3A5A2A">
+            <TextBlock Text="Reolmarkedet"
+                       Foreground="White"
+                       FontSize="18"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="40,0,0,0"/>
         </Grid>
-        
-        <!-- Selve reoloversigten -->
-        <Grid Grid.Row="1"
-            Margin="20,10,20,5">
-              
-              <ItemsControl ItemsSource="{Binding ShelfList}">
-                  <ItemsControl.ItemsPanel>
-                      <ItemsPanelTemplate>
-                          <UniformGrid Columns="10"
-                                       Rows="8"/>
-                      </ItemsPanelTemplate>
-                  </ItemsControl.ItemsPanel>
-                          
-                  <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Button Content="{Binding ShelfID}"
-                                Margin="3"
-                                FontWeight="Bold"
-                                Foreground="#3A5A2A">
-                            <Button.Style>
-                                <Style TargetType="Button">
 
-                                    <!-- Ledig -->
-                                    <Setter Property="Background" Value="White"/>
-                                    <Setter Property="BorderBrush" Value="#3A5A2A"/>
+        <!-- OVERSKRIFT -->
+        <TextBlock Grid.Row="1"
+                   Text="Reoloversigt"
+                   FontSize="20"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"
+                   Margin="40,0,0,0"/>
 
-                                    <Style.Triggers>
+        <!-- REOLERNE -->
+        <ItemsControl Grid.Row="2"
+                      Margin="35,0,35,0"
+                      ItemsSource="{Binding ShelfList}">
 
-                                        <!-- Udlejet -->
-                                        <DataTrigger Binding="{Binding ShelfStatus}"
-                             Value="Udlejet">
-                                            <Setter Property="Background" Value="#D3D3D3"/>
-                                            <Setter Property="BorderBrush" Value="#A9A9A9"/>
-                                        </DataTrigger>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="10" Rows="8"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
 
-                                        <!-- Snart ledig / opsagt -->
-                                        <DataTrigger Binding="{Binding ShelfStatus}"
-                             Value="Snart ledig / opsagt">
-                                            <Setter Property="Background" Value="#F5E6B3"/>
-                                            <Setter Property="BorderBrush" Value="#D8C5B9"/>
-                                        </DataTrigger>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Content="{Binding ShelfID}"
+                Margin="4"
+                FontWeight="Bold"
+                Foreground="#3A5A2A"
+                BorderBrush="#3A5A2A"
+                Command="{Binding DataContext.SelectShelfCommand,
+                                  RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                CommandParameter="{Binding}">
 
-                                    </Style.Triggers>
+                        <!-- Farve ud fra status -->
+                        <Button.Style>
+                            <Style TargetType="Button">
 
-                                </Style>
-                            </Button.Style>
-                        </Button>
+                                <!-- Standardfarve (Ledig) -->
+                                <Setter Property="Background" Value="White"/>
 
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-                          
-                    </ItemsControl>
-        </Grid>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ShelfStatus}" Value="Udlejet">
+                                        <Setter Property="Background" Value="#E3DFDA"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ShelfStatus}" Value="Snart ledig / opsagt">
+                                        <Setter Property="Background" Value="#F7E7C6"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+
+        </ItemsControl>
 
         <!-- BUNDEN -->
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="3">
 
-            <!-- Statusforklaring -->
+            <!-- Forklaring af farverne -->
             <StackPanel Orientation="Horizontal"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                Margin="20,0,0,0">
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Margin="40,0,0,0">
 
-                <!-- Ledig -->
-                <Border Width="18"
-                Height="18"
-                Background="White"
-                BorderBrush="#3A5A2A"
-                BorderThickness="1"
-                CornerRadius="4"
-                Margin="0,0,5,0"/>
+                <Border Width="18" Height="18" Background="White"
+                        BorderBrush="#3A5A2A" BorderThickness="1"/>
+                <TextBlock Text="Ledig" Margin="6,0,30,0" VerticalAlignment="Center"/>
 
-                <TextBlock Text="Ledig"
-                   VerticalAlignment="Center"
-                   Margin="0,0,25,0"/>
+                <Border Width="18" Height="18" Background="#E3DFDA"
+                        BorderBrush="#3A5A2A" BorderThickness="1"/>
+                <TextBlock Text="Udlejet" Margin="6,0,30,0" VerticalAlignment="Center"/>
 
-                <!-- Udlejet -->
-                <Border Width="18"
-                Height="18"
-                Background="#D3D3D3"
-                BorderBrush="#A9A9A9"
-                BorderThickness="1"
-                CornerRadius="4"
-                Margin="0,0,5,0"/>
-
-                <TextBlock Text="Udlejet"
-                   VerticalAlignment="Center"
-                   Margin="0,0,25,0"/>
-
-                <!-- Snart ledig / opsagt -->
-                <Border Width="18"
-                Height="18"
-                Background="#F5E6B3"
-                BorderBrush="#D8C5B9"
-                BorderThickness="1"
-                CornerRadius="4"
-                Margin="0,0,5,0"/>
-
-                <TextBlock Text="Snart ledig / opsagt"
-                   VerticalAlignment="Center"/>
+                <Border Width="18" Height="18" Background="#F7E7C6"
+                        BorderBrush="#3A5A2A" BorderThickness="1"/>
+                <TextBlock Text="Snart ledig / opsagt" Margin="6,0,0,0" VerticalAlignment="Center"/>
 
             </StackPanel>
 
-            <!-- Home -->
+            <!-- HOME -->
             <Button Content="Home"
-            Command="{Binding HomeCommand}"
-            Width="150"
-            Height="35"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Center"
-            Margin="0,0,20,0"
-            Background="#3A5A2A"
-            Foreground="White"
-            FontWeight="Bold"
-            BorderThickness="0"/>
+                    Command="{Binding HomeCommand}"
+                    Width="135"
+                    Height="36"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Margin="0,0,40,0"
+                    Background="#3A5A2A"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    BorderThickness="0"/>
 
         </Grid>
 
+        <!-- POPUP (vises kun når ShelfDetails ikke er null) -->
+        <ContentControl Grid.RowSpan="4"
+                        Content="{Binding ShelfDetails}"/>
 
     </Grid>
 </Window>

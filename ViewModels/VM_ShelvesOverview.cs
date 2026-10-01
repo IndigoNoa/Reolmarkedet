@@ -17,7 +17,7 @@ namespace Reolmarkedet.ViewModels
         private string _shelfType;
         private string _shelfStatus;
         private List<Shelves> _shelfList;
-        private DateTime _period;
+        private VM_ShelfDetails _shelfDetails;
 
         // Repository til at hente reoldata
         private readonly IShelvesRepository _shelvesRepository = new JsonShelvesRepository();
@@ -56,21 +56,22 @@ namespace Reolmarkedet.ViewModels
             set => SetProperty(ref _shelfList, value);
         }
 
-        public DateTime Period
+        // Popup'en med reoldetaljer. Er den null, vises ingen popup
+        public VM_ShelfDetails ShelfDetails
         {
-            get => _period;
-            set => SetProperty(ref _period, value);
+            get => _shelfDetails;
+            set => SetProperty(ref _shelfDetails, value);
         }
 
         // Commands som knapperne i Viewet binder til
         public ICommand HomeCommand { get; }
-        public ICommand CloseCommand { get; }
+        public ICommand SelectShelfCommand { get; }
 
         // Constructor: kobler commands og starter reoloversigten
         public VM_ShelvesOverview()
         {
             HomeCommand = new RelayCommand(ExecuteHome);
-            CloseCommand = new RelayCommand(ExecuteClose);
+            SelectShelfCommand = new RelayCommand(parameter => ExecuteSelectShelf(parameter));
 
             ShelfList = _shelvesRepository.GetAll();
         }
@@ -89,6 +90,38 @@ namespace Reolmarkedet.ViewModels
             var shelf = shelves.Find(s => s.ShelfID == ShelfID);
 
             return shelf?.ShelfStatus;
+        }
+
+        // Åbner oplysninger om den valgte reol
+        private void ExecuteSelectShelf(object parameter)
+        {
+            var selectedShelf = parameter as Shelves;
+
+            if (selectedShelf == null)
+                return;
+
+            ShelfID = selectedShelf.ShelfID;
+            RenterID = selectedShelf.RenterID;
+            ShelfType = selectedShelf.ShelfType;
+            ShelfStatus = selectedShelf.ShelfStatus;
+
+            // Opretter popup'en. Når den lukkes, sættes ShelfDetails til null
+            var details = new VM_ShelfDetails(selectedShelf, () => ShelfDetails = null);
+
+            /*
+            // Aktiveres, når Renter-modellen er færdig
+            var renter = _rentersRepository.GetAll()
+                .Find(r => r.RenterID == selectedShelf.RenterID);
+
+            if (renter != null)
+            {
+                details.RenterName = renter.RenterName;
+                details.RenterPhone = renter.RenterPhone;
+                details.RenterEmail = renter.RenterEmail;
+            }
+            */
+
+            ShelfDetails = details;
         }
 
         /*
@@ -122,11 +155,6 @@ namespace Reolmarkedet.ViewModels
 
         // Går tilbage til forsiden
         private void ExecuteHome()
-        {
-        }
-
-        // Lukker reoloversigten
-        private void ExecuteClose()
         {
         }
     }
