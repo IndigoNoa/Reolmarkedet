@@ -15,9 +15,9 @@ namespace Reolmarkedet.Views
     /// <summary>
     /// Interaction logic for AddAdditonalShelvesView.xaml
     /// </summary>
-    public partial class AddAdditonalShelvesView : Window
+    public partial class AddAdditionalShelvesView : Window
     {
-        public AddAdditonalShelvesView()
+        public AddAdditionalShelvesView()
         {
             InitializeComponent();
         }

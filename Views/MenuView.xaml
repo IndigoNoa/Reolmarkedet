@@ -19,28 +19,28 @@
         </Border>
         <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Menu" VerticalAlignment="Top" FontFamily="Candara" FontSize="35" Margin="0,90,0,0" Grid.ColumnSpan="4"/>
         <Border Grid.Column="0" Width="165" Height="60" Background="White" CornerRadius="6" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="25,165,0,0" BorderBrush="#FF3A5A2A" BorderThickness="1,1,1,1">
-            <Button Content="Opret ny lejer" Background="Transparent" BorderBrush="{x:Null}" FontFamily="Candara" FontSize="15" Foreground="#FF585656"/>
+            <Button Content="Opret ny lejer" Command="{Binding AddRenterCommand}" Background="Transparent" BorderBrush="{x:Null}" FontFamily="Candara" FontSize="15" Foreground="#FF585656"/>
 </Border>
-        <Border Grid.Column="1" Width="175" Height="60" Background="White" CornerRadius="6" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,165,0,0" BorderBrush="#FF3A5A2A" BorderThickness="1,1,1,1">
-            <Button Content="Reoloversigt" Background="Transparent" BorderBrush="{x:Null}" FontFamily="Candara" FontSize="15" Foreground="#FF585656"/>
+        <Border Grid.Column="1" Width="165" Height="60" Background="White" CornerRadius="6" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,165,0,0" BorderBrush="#FF3A5A2A" BorderThickness="1,1,1,1">
+            <Button Content="Reoloversigt" Command="{Binding ShelvesOverviewCommand}" Background="Transparent" BorderBrush="{x:Null}" FontFamily="Candara" FontSize="15" Foreground="#FF585656"/>
         </Border>
-        <Border Grid.Column="2" Width="175" Height="60" Background="White" CornerRadius="6" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-15,165,0,0" BorderBrush="#FF3A5A2A" BorderThickness="1,1,1,1">
-            <Button Content="Opsig lejer/reol" Background="Transparent" BorderBrush="{x:Null}" FontFamily="Candara" FontSize="15" Foreground="#FF585656"/>
+        <Border Grid.Column="2" Width="165" Height="60" Background="White" CornerRadius="6" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-15,165,0,0" BorderBrush="#FF3A5A2A" BorderThickness="1,1,1,1">
+            <Button Content="Opsig lejer/reol" Command="{Binding CancelRenterCommand}" Background="Transparent" BorderBrush="{x:Null}" FontFamily="Candara" FontSize="15" Foreground="#FF585656"/>
         </Border>
-        <Border Grid.Column="3" Width="175" Height="60" Background="White" CornerRadius="6" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-25,165,0,0" BorderBrush="#FF3A5A2A" BorderThickness="1,1,1,1">
-            <Button Content="Opret vare" Background="Transparent" BorderBrush="{x:Null}" FontFamily="Candara" FontSize="15" Foreground="#FF585656"/>
+        <Border Grid.Column="3" Width="165" Height="60" Background="White" CornerRadius="6" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-25,165,0,0" BorderBrush="#FF3A5A2A" BorderThickness="1,1,1,1">
+            <Button Content="Opret vare" Command="{Binding AddItemCommand}" Background="Transparent" BorderBrush="{x:Null}" FontFamily="Candara" FontSize="15" Foreground="#FF585656"/>
         </Border>
-        <Border Grid.Column="0" Width="175" Height="60" Background="White" CornerRadius="6" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="25,240,0,0" BorderBrush="#FF3A5A2A" BorderThickness="1,1,1,1">
-            <Button Content="Månedsopgørelse" Background="Transparent" BorderBrush="{x:Null}" FontFamily="Candara" FontSize="15" Foreground="#FF585656"/>
+        <Border Grid.Column="0" Width="165" Height="60" Background="White" CornerRadius="6" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="25,240,0,0" BorderBrush="#FF3A5A2A" BorderThickness="1,1,1,1">
+            <Button Content="Månedsopgørelse" Command="{Binding MonthlyReportCommand}" Background="Transparent" BorderBrush="{x:Null}" FontFamily="Candara" FontSize="15" Foreground="#FF585656"/>
         </Border>
-        <Border Grid.Column="1" Width="175" Height="60" Background="White" CornerRadius="6" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,240,0,0" BorderBrush="#FF3A5A2A" BorderThickness="1,1,1,1">
-            <Button Content="Kasse" Background="Transparent" BorderBrush="{x:Null}" FontFamily="Candara" FontSize="15" Foreground="#FF585656"/>
+        <Border Grid.Column="1" Width="165" Height="60" Background="White" CornerRadius="6" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,240,0,0" BorderBrush="#FF3A5A2A" BorderThickness="1,1,1,1">
+            <Button Content="Kasse" Command="{Binding CheckoutCommand}" Background="Transparent" BorderBrush="{x:Null}" FontFamily="Candara" FontSize="15" Foreground="#FF585656"/>
         </Border>
-        <Border Grid.Column="2" Width="175" Height="60" Background="White" CornerRadius="6" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-15,240,0,0" BorderBrush="#FF3A5A2A" BorderThickness="1,1,1,1">
-            <Button Content="Opret yderligere reol" Background="Transparent" BorderBrush="{x:Null}" FontFamily="Candara" FontSize="15" Foreground="#FF585656"/>
+        <Border Grid.Column="2" Width="165" Height="60" Background="White" CornerRadius="6" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-15,240,0,0" BorderBrush="#FF3A5A2A" BorderThickness="1,1,1,1">
+            <Button Content="Opret yderligere reol" Command="{Binding AddAdditionalShelvesCommand}" Background="Transparent" BorderBrush="{x:Null}" FontFamily="Candara" FontSize="15" Foreground="#FF585656"/>
         </Border>
-        <Border Grid.Column="3" Width="175" Height="60" Background="White" CornerRadius="6" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-25,240,0,0" BorderBrush="#FF3A5A2A" BorderThickness="1,1,1,1">
-            <Button Content="Log ud" Background="Transparent" BorderBrush="{x:Null}" FontFamily="Candara" FontSize="15" Foreground="#FF585656"/>
+        <Border Grid.Column="3" Width="165" Height="60" Background="White" CornerRadius="6" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="-25,240,0,0" BorderBrush="#FF3A5A2A" BorderThickness="1,1,1,1">
+            <Button Content="Log ud" Command="{Binding LogOutCommand}" Background="Transparent" BorderBrush="{x:Null}" FontFamily="Candara" FontSize="15" Foreground="#FF585656"/>
         </Border>
     </Grid>
 </Window>

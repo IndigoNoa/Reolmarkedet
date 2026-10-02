@@ -79,7 +79,7 @@ namespace Reolmarkedet.ViewModels
         private void ExecuteAddAdditionalShelves()
         {
             //Åbner vinduet til opret yderligere reol
-            AddAdditonalShelvesView addAdditionalShelvesView = new AddAdditonalShelvesView();
+            AddAdditionalShelvesView addAdditionalShelvesView = new AddAdditionalShelvesView();
             addAdditionalShelvesView.Show();
         }
 
