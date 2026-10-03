@@ -1,0 +1,126 @@
+﻿<Window x:Class="Reolmarkedet.Views.MonthlyReportDetailView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Reolmarkedet.ViewModels"
+        Title="MonthlyReportDetailView" Height="550" Width="900">
+
+	<Window.Resources>
+		<Style TargetType="Button">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="1" CornerRadius="8">
+							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"
+                                               Margin="10,0"/>
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style TargetType="TextBox">
+			<Setter Property="Background" Value="White"/>
+			<Setter Property="BorderBrush" Value="#3A5A2A"/>
+			<Setter Property="Padding" Value="8,6"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="TextBox">
+						<Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="1" CornerRadius="8"
+                                Padding="{TemplateBinding Padding}">
+							<ScrollViewer x:Name="PART_ContentHost"/>
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</Window.Resources>
+
+	<Grid Background="#D8C5B9">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+
+		<Border Grid.Row="0" Background="#3A5A2A" Height="50">
+			<TextBlock Text="Reolmarkedet" Foreground="White" FontSize="20" FontWeight="Bold"
+                       VerticalAlignment="Center" Margin="40,0,0,0"/>
+		</Border>
+
+		<Grid Grid.Row="1" Margin="40,20,40,20">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+
+			<StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,15">
+				<TextBlock Text="Månedsopgørelse for lejer: " FontSize="18" FontWeight="Bold"/>
+				<TextBlock Text="{Binding RenterName}" FontSize="18"/>
+				<TextBlock Text="   Reol: " FontSize="18" FontWeight="Bold" Margin="30,0,0,0"/>
+				<TextBlock Text="{Binding RenterID}" FontSize="18"/>
+			</StackPanel>
+
+			<Grid Grid.Row="1">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+
+				<StackPanel Grid.Column="0" Margin="0,0,20,0">
+					<TextBlock Text="Salg for perioden" FontWeight="Bold" Margin="0,0,0,8"/>
+					<DataGrid ItemsSource="{Binding PeriodSales}"
+                              AutoGenerateColumns="False" IsReadOnly="True"
+                              Background="White" BorderBrush="#3A5A2A" BorderThickness="1"
+                              HeadersVisibility="Column" GridLinesVisibility="None" MaxHeight="150">
+						<DataGrid.Columns>
+							<DataGridTextColumn Header="Dato" Binding="{Binding SaleDate, StringFormat=dd-MM-yy}" Width="*"/>
+							<DataGridTextColumn Header="Vare" Binding="{Binding ItemName}" Width="*"/>
+							<DataGridTextColumn Header="Beløb" Binding="{Binding ItemPrice, StringFormat={}{0}.-}" Width="*"/>
+						</DataGrid.Columns>
+					</DataGrid>
+				</StackPanel>
+
+				<StackPanel Grid.Column="1">
+					<TextBlock Text="Resultat" FontWeight="Bold" Margin="0,0,0,8"/>
+					<Border Background="White" BorderBrush="#3A5A2A" BorderThickness="1" CornerRadius="4" Padding="15">
+						<StackPanel>
+							<Grid Margin="0,0,0,8">
+								<TextBlock Text="Total solgte varer"/>
+								<TextBlock Text="{Binding PeriodSales.Count}" FontWeight="Bold" HorizontalAlignment="Right"/>
+							</Grid>
+							<Grid Margin="0,0,0,8">
+								<TextBlock Text="Kommission (10%)"/>
+								<TextBlock Text="{Binding Commission, StringFormat={}-{0:N2}.-}" FontWeight="Bold" HorizontalAlignment="Right"/>
+							</Grid>
+							<Grid Margin="0,0,0,8">
+								<TextBlock Text="Leje for næste periode"/>
+								<TextBlock Text="{Binding Rent, StringFormat={}-{0}.-}" FontWeight="Bold" HorizontalAlignment="Right"/>
+							</Grid>
+							<Separator Margin="0,5"/>
+							<Border Background="#EFE1C7" Padding="10" Margin="0,5,0,0">
+								<Grid>
+									<TextBlock Text="Til opkrævning" FontWeight="Bold"/>
+									<TextBlock Text="{Binding RenterBalance, StringFormat={}{0:N2}.-}" FontWeight="Bold" HorizontalAlignment="Right"/>
+								</Grid>
+							</Border>
+						</StackPanel>
+					</Border>
+				</StackPanel>
+			</Grid>
+
+			<TextBlock Grid.Row="2" Text="Tilføj notat (valgfrit)" FontWeight="Bold" Margin="0,20,0,8"/>
+			<TextBox Grid.Row="3" Text="{Binding ReportNote, UpdateSourceTrigger=PropertyChanged}"
+                     TextWrapping="Wrap" AcceptsReturn="True" VerticalContentAlignment="Top"
+                     VerticalAlignment="Top" Height="100"/>
+
+			<Button Grid.Row="4" Content="Næste" Command="{Binding NextCommand}"
+                    Width="150" Height="34" Background="#3A5A2A" Foreground="White" FontWeight="Bold"
+                    HorizontalAlignment="Right" Margin="0,15,0,0"/>
+		</Grid>
+	</Grid>
+</Window>

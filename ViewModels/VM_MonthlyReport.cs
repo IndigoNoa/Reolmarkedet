@@ -171,9 +171,17 @@ namespace Reolmarkedet.ViewModels
 				PeriodSales.Add(sale);
 		}
 
+		private List<Items> _allItems = new List<Items>();
+
 		private void ExecuteLoadItems()
 		{
-			// Bruges senere til at slå varenavn op ud fra ItemID på et salg
+			_allItems = _itemsRepository.GetAll();
+		}
+
+		private string GetItemName(string itemID)
+		{
+			var item = _allItems.FirstOrDefault(i => i.ItemID == itemID);
+			return item?.ItemName ?? "Ukendt vare";
 		}
 
 		private void ExecuteMonthlyReport()
@@ -191,12 +199,33 @@ namespace Reolmarkedet.ViewModels
 		// De to sidste metoder fra DCD'et (ingen "Execute"-præfiks i forvejen)
 		private MonthlyReport CreateMonthlyReport()
 		{
-			return new MonthlyReport();   // Udfyldes i et senere skridt
+			var allReports = _monthlyReportsRepository.GetAll();
+			string newReportID = "MR_" + (allReports.Count + 1).ToString("D2");
+
+			return new MonthlyReport
+			{
+				ReportID = newReportID,
+				RenterID = RenterID,
+				ReportPeriod = ReportPeriod,
+				Commission = Commission,
+				Rent = Rent,
+				MultipleShelvesDiscount = MultipleShelvesDiscount,
+				RenterBalance = RenterBalance,   // Bliver 0 indtil CalculateRenterBalance er bygget færdig
+				ReportNote = ReportNote,
+				ReportStatus = true   // Sættes til opgjort, når rapporten gemmes
+			};
 		}
 
 		private void CalculateRenterBalance()
 		{
-			// Selve saldo-beregningen bygges i et senere skridt
+			// Finder alle salg for den valgte lejers reol(er) i perioden
+			var renterSales = PeriodSales.Where(s => s.ShelfID == RenterID).ToList();
+			// OBS: Dette antager RenterID == ShelfID, hvilket sjældent er rigtigt - se note nedenfor
+
+			decimal totalSales = renterSales.Sum(s => s.ItemPrice);
+			Commission = totalSales * 0.10m;   // 10% kommission, jf. jeres Hi-Fi
+
+			RenterBalance = totalSales - Commission - Rent + MultipleShelvesDiscount;
 		}
 
 	}
