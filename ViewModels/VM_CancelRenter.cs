@@ -38,8 +38,8 @@ namespace Reolmarkedet.ViewModels
         private void LoadRenters()
         {
             // Her skal du hente lejer fra databasen eller en liste
-            RenterList.Add(new CancelRenter { Id = 1, Name = "Ola Nordmann", Address = "Adresse 1", Phone = "12345678" });
-            RenterList.Add(new CancelRenter { Id = 2, Name = "Kari Nordmann", Address = "Adresse 2", Phone = "87654321" });
+            RenterList.Add(new CancelRenter { Id = 1, Name = "Sofus Pedersen", Address = "Adresse 1", Phone = "12345678" });
+            RenterList.Add(new CancelRenter { Id = 2, Name = "Noa Papadakis ", Address = "Adresse 2", Phone = "87654321" });
             // Tilføj flere lejere som nødvendigt
         }
 
