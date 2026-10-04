@@ -10,7 +10,7 @@ namespace Reolmarkedet.ViewModels
 {
     public class VM_AdditionalShelves : ViewModelBase
     {
-        // Lejepriser pr. reol pr. måned (fra casen)
+        // Lejepriser pr. reol pr. måned 
         private const decimal PriceOneShelf = 850m;          // 1 reol
         private const decimal PriceTwoToThreeShelves = 825m; // 2-3 reoler
         private const decimal PriceFourOrMoreShelves = 800m; // 4+ reoler
@@ -25,7 +25,7 @@ namespace Reolmarkedet.ViewModels
         private decimal _pricePerShelf;
         private decimal _multipleShelvesDiscount;
 
-        // Alle lejere, før der søges. Renters er den filtrerede liste, Viewet viser
+        
         private List<RenterListItem> _allRenters = new List<RenterListItem>();
 
         // Repositories til at hente og gemme data
@@ -33,7 +33,6 @@ namespace Reolmarkedet.ViewModels
         // Nedenstående aktiveres ved merge
        // private readonly IRentersRepository _rentersRepository = new JsonRentersRepository();
 
-        // Navigation: sættes udefra, så ViewModel'en ikke kender vinduerne
         private readonly Action _onHome;
         private readonly Action _onConfirmed;
 
@@ -155,7 +154,7 @@ namespace Reolmarkedet.ViewModels
 
         // TRIN 3: Bekræft
 
-        // Pris pr. reol inkl. mængderabat (vises på bekræftelsen).
+        // Pris pr. reol inkl. mængderabat
         // Antallet tæller lejerens nuværende reoler + den nye
         public void CalculatePrice()
         {
@@ -184,7 +183,6 @@ namespace Reolmarkedet.ViewModels
             var all = _shelvesRepository.GetAll();
             var shelf = all.Find(s => s.ShelfID == SelectedShelf.ShelfID);
 
-            // Reolen kan være blevet udlejet imellem
             if (shelf == null || shelf.ShelfStatus != "Ledig")
                 return;
 
