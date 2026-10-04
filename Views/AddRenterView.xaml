@@ -45,9 +45,11 @@
             </StackPanel.RenderTransform>
             <Label Content="Navn:" Foreground="#3A5A2A"/>
             <TextBox Text="{Binding Name}" Height="30" Margin="0,5" Padding="5" Background="White" BorderBrush="#3A5A2A" BorderThickness="2"/>
+            <TextBox x:Name="NameTextBox" Text="{Binding Name}" />
 
             <Label Content="Adresse:" Foreground="#3A5A2A"/>
             <TextBox Text="{Binding Address}" Height="30" Padding="5" Background="White" BorderBrush="#3A5A2A" BorderThickness="2"/>
+            <TextBox x:Name="AddressTextBox" Text="{Binding Address}" />
 
             <!-- Tlf. and Email Section -->
             <Grid Margin="0,5">
@@ -60,6 +62,7 @@
 
                 <Label Content="Tlf." Foreground="#3A5A2A" Grid.Column="0" Width="50"/>
                 <TextBox Text="{Binding Phone}" Height="30" Margin="0,30,65,-30" Padding="5" Background="White" BorderBrush="#3A5A2A" BorderThickness="2" Grid.ColumnSpan="2"/>
+                <TextBox x:Name="PhoneTextBox" Text="{Binding Phone}" />
 
                 <Label Content="E-mail:" Foreground="#3A5A2A" Grid.Column="2" Width="70"/>
                 <TextBox Text="{Binding Email}" Height="30" Padding="5" Background="White" BorderBrush="#3A5A2A" BorderThickness="2" Grid.Column="2" Grid.ColumnSpan="2" Margin="0,30,70,-30"/>
