@@ -1,1 +1,642 @@
-﻿[ ]
+﻿[
+	{
+		"ShelfID": "1",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "2",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Udlejet",
+		"RenterID": "2",
+		"RentalStartDate": "2026-03-01T00:00:00",
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "3",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "4",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Udlejet",
+		"RenterID": "3",
+		"RentalStartDate": "2026-02-15T00:00:00",
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "5",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "6",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "7",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "8",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "9",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "10",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "11",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Udlejet",
+		"RenterID": "1",
+		"RentalStartDate": "2026-06-01T00:00:00",
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "12",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "13",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Udlejet",
+		"RenterID": "4",
+		"RentalStartDate": "2026-01-10T00:00:00",
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "14",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "15",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "16",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "17",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Udlejet",
+		"RenterID": "5",
+		"RentalStartDate": "2026-04-05T00:00:00",
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "18",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "19",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "20",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "21",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "22",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "23",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "24",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "25",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "26",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "27",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "28",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "29",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "30",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "31",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "32",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "33",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "34",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "35",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "36",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "37",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "38",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Udlejet",
+		"RenterID": "6",
+		"RentalStartDate": "2026-05-01T00:00:00",
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "39",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "40",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "41",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "42",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Udlejet",
+		"RenterID": "7",
+		"RentalStartDate": "2026-02-01T00:00:00",
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "43",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "44",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "45",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "46",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "47",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "48",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "49",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "50",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "51",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "52",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "53",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Udlejet",
+		"RenterID": "8",
+		"RentalStartDate": "2026-03-20T00:00:00",
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "54",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "55",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "56",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "57",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "58",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "59",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "60",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "61",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "62",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "63",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "64",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "65",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "66",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "67",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Udlejet",
+		"RenterID": "9",
+		"RentalStartDate": "2026-04-18T00:00:00",
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "68",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "69",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Udlejet",
+		"RenterID": "10",
+		"RentalStartDate": "2026-05-12T00:00:00",
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "70",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "71",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Snart ledig / opsagt",
+		"RenterID": "13",
+		"RentalStartDate": "2025-10-01T00:00:00",
+		"CancellationDate": "2026-10-31T00:00:00"
+	},
+	{
+		"ShelfID": "72",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "73",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "74",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "75",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "76",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Udlejet",
+		"RenterID": "11",
+		"RentalStartDate": "2026-01-25T00:00:00",
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "77",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "78",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Ledig",
+		"RenterID": null,
+		"RentalStartDate": null,
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "79",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Udlejet",
+		"RenterID": "12",
+		"RentalStartDate": "2026-06-15T00:00:00",
+		"CancellationDate": null
+	},
+	{
+		"ShelfID": "80",
+		"ShelfType": "Standard",
+		"ShelfStatus": "Snart ledig / opsagt",
+		"RenterID": "14",
+		"RentalStartDate": "2025-11-01T00:00:00",
+		"CancellationDate": "2026-11-30T00:00:00"
+	}
+]

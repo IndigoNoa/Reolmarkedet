@@ -1,5 +1,4 @@
-﻿using Reolmarkedet.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -13,16 +12,14 @@ using System.Windows.Shapes;
 
 namespace Reolmarkedet.Views
 {
-	/// <summary>
-	/// Interaction logic for ShelvesOverviewView.xaml
-	/// </summary>
-	public partial class ShelvesOverviewView : Window
-	{
-		public ShelvesOverviewView()
-		{
-			InitializeComponent();
-
-			DataContext = new VM_ShelvesOverview();
-		}
-	}
+    /// <summary>
+    /// Interaction logic for MonthlyReportConfirmedView.xaml
+    /// </summary>
+    public partial class MonthlyReportConfirmedView : Window
+    {
+        public MonthlyReportConfirmedView()
+        {
+            InitializeComponent();
+        }
+    }
 }

@@ -12,12 +12,13 @@ using System.Windows.Shapes;
 
 namespace Reolmarkedet.Views
 {
+
     /// <summary>
-    /// Interaction logic for AddAdditonalShelvesView.xaml
+    /// Interaction logic for ShelfDetailsView.xaml
     /// </summary>
-    public partial class AddAdditonalShelvesView : Window
+    public partial class ShelfDetailsView : UserControl
     {
-        public AddAdditonalShelvesView()
+        public ShelfDetailsView()
         {
             InitializeComponent();
         }

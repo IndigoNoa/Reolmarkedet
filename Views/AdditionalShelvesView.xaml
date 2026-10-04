@@ -1,0 +1,313 @@
+﻿<Window x:Class="Reolmarkedet.Views.AdditionalShelvesView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Opret yderligere reol"
+        Height="520"
+        Width="800"
+        Background="#E0CFC7">
+
+	<!-- Markeringsfarve i listerne (i stedet for standardblå) -->
+	<Window.Resources>
+		<SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#E3EDE2"/>
+		<SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#E3EDE2"/>
+		<SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="#3A5A2A"/>
+		<SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="#3A5A2A"/>
+	</Window.Resources>
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="50"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+
+		<!-- TOPPEN -->
+		<Grid Grid.Row="0" Background="#3A5A2A">
+			<TextBlock Text="Reolmarkedet"
+                       Foreground="White"
+                       FontSize="18"
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"
+                       Margin="40,0,0,0"/>
+		</Grid>
+
+
+		<Grid Grid.Row="1">
+
+			<!-- ===== TRIN 1: Vælg eksisterende lejer ===== -->
+			<Grid Margin="40,20,40,20">
+				<Grid.Style>
+					<Style TargetType="Grid">
+						<Setter Property="Visibility" Value="Collapsed"/>
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding CurrentStep}" Value="1">
+								<Setter Property="Visibility" Value="Visible"/>
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</Grid.Style>
+
+				<Grid.RowDefinitions>
+					<RowDefinition Height="40"/>
+					<RowDefinition Height="45"/>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="50"/>
+				</Grid.RowDefinitions>
+
+				<TextBlock Grid.Row="0"
+                           Text="Vælg eksisterende lejer"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"/>
+
+				<!-- Søgefelt + Søg -->
+				<Grid Grid.Row="1">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="Auto"/>
+					</Grid.ColumnDefinitions>
+
+					<TextBox Grid.Column="0"
+                             Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                             Height="32"
+                             VerticalContentAlignment="Center"
+                             BorderBrush="#3A5A2A"/>
+
+					<Button Grid.Column="1"
+                            Content="Søg"
+                            Command="{Binding SearchRenterNameInputCommand}"
+                            Width="150"
+                            Height="32"
+                            Margin="15,0,0,0"
+                            Background="#3A5A2A"
+                            Foreground="White"
+                            FontWeight="Bold"
+                            BorderThickness="0"/>
+				</Grid>
+
+				<!-- Lejerliste -->
+				<ListBox Grid.Row="2"
+                         Width="370"
+                         HorizontalAlignment="Left"
+                         Margin="0,10,0,0"
+                         BorderBrush="#3A5A2A"
+                         ItemsSource="{Binding Renters}"
+                         SelectedItem="{Binding SelectedRenter}"
+                         DisplayMemberPath="Display"/>
+
+				<!-- Knapper -->
+				<Button Grid.Row="3"
+                        Content="Tilbage"
+                        Command="{Binding BackCommand}"
+                        Width="100"
+                        Height="36"
+                        HorizontalAlignment="Left"
+                        Background="White"
+                        Foreground="#3A5A2A"
+                        BorderBrush="#3A5A2A"
+                        FontWeight="Bold"/>
+
+				<Button Grid.Row="3"
+                        Content="Næste"
+                        Command="{Binding NextCommand}"
+                        Width="135"
+                        Height="36"
+                        HorizontalAlignment="Right"
+                        Background="#3A5A2A"
+                        Foreground="White"
+                        FontWeight="Bold"
+                        BorderThickness="0"/>
+			</Grid>
+
+			<!-- ===== TRIN 2: Vælg ledig reol ===== -->
+			<Grid Margin="40,20,40,20">
+				<Grid.Style>
+					<Style TargetType="Grid">
+						<Setter Property="Visibility" Value="Collapsed"/>
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding CurrentStep}" Value="2">
+								<Setter Property="Visibility" Value="Visible"/>
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</Grid.Style>
+
+				<Grid.RowDefinitions>
+					<RowDefinition Height="40"/>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="50"/>
+				</Grid.RowDefinitions>
+
+				<TextBlock Grid.Row="0"
+                           Text="Vælg ledig reol"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"/>
+
+				<!-- Reolerne: kun "Ledig" kan vælges, resten er grå -->
+				<ListBox Grid.Row="1"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                         ItemsSource="{Binding ShelfList}"
+                         SelectedItem="{Binding SelectedShelf}">
+
+					<ListBox.ItemsPanel>
+						<ItemsPanelTemplate>
+							<UniformGrid Columns="3"/>
+						</ItemsPanelTemplate>
+					</ListBox.ItemsPanel>
+
+					<ListBox.ItemContainerStyle>
+						<Style TargetType="ListBoxItem">
+							<!-- Standard: Udlejet (grå og kan ikke vælges) -->
+							<Setter Property="IsEnabled" Value="False"/>
+							<Setter Property="Background" Value="#E3DFDA"/>
+							<Setter Property="BorderBrush" Value="#3A5A2A"/>
+							<Setter Property="BorderThickness" Value="1"/>
+							<Setter Property="Margin" Value="4"/>
+							<Setter Property="Padding" Value="10"/>
+							<Setter Property="HorizontalContentAlignment" Value="Center"/>
+							<Setter Property="VerticalContentAlignment" Value="Center"/>
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding ShelfStatus}" Value="Ledig">
+									<Setter Property="IsEnabled" Value="True"/>
+									<Setter Property="Background" Value="White"/>
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</ListBox.ItemContainerStyle>
+
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<StackPanel>
+								<TextBlock Text="{Binding ShelfID, StringFormat=Reol {0}}"
+                                           FontWeight="Bold"
+                                           HorizontalAlignment="Center"/>
+								<TextBlock Text="{Binding ShelfStatus}"
+                                           HorizontalAlignment="Center"/>
+							</StackPanel>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+
+				<!-- Knapper -->
+				<Button Grid.Row="2"
+                        Content="Tilbage"
+                        Command="{Binding BackCommand}"
+                        Width="100"
+                        Height="36"
+                        HorizontalAlignment="Left"
+                        Background="White"
+                        Foreground="#3A5A2A"
+                        BorderBrush="#3A5A2A"
+                        FontWeight="Bold"/>
+
+				<Button Grid.Row="2"
+                        Content="Næste"
+                        Command="{Binding NextCommand}"
+                        Width="135"
+                        Height="36"
+                        HorizontalAlignment="Right"
+                        Background="#3A5A2A"
+                        Foreground="White"
+                        FontWeight="Bold"
+                        BorderThickness="0"/>
+			</Grid>
+
+			<!-- ===== TRIN 3: Bekræft ===== -->
+			<Grid Margin="40,20,40,20">
+				<Grid.Style>
+					<Style TargetType="Grid">
+						<Setter Property="Visibility" Value="Collapsed"/>
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding CurrentStep}" Value="3">
+								<Setter Property="Visibility" Value="Visible"/>
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</Grid.Style>
+
+				<Grid.RowDefinitions>
+					<RowDefinition Height="40"/>
+					<RowDefinition Height="30"/>
+					<RowDefinition Height="60"/>
+					<RowDefinition Height="15"/>
+					<RowDefinition Height="60"/>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="50"/>
+				</Grid.RowDefinitions>
+
+				<TextBlock Grid.Row="0"
+                           Text="Opret yderligere reol – bekræft"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"/>
+
+				<TextBlock Grid.Row="1"
+                           Text="Du er nu ved at tilføje en yderligere reol til:"
+                           Foreground="Gray"
+                           VerticalAlignment="Center"/>
+
+				<!-- Lejer, nuværende reoler og ny reol -->
+				<Border Grid.Row="2"
+                        Background="White"
+                        BorderBrush="#3A5A2A"
+                        BorderThickness="1">
+					<StackPanel Orientation="Horizontal"
+                                VerticalAlignment="Center"
+                                Margin="20,0">
+						<TextBlock Text="Lejer: " FontWeight="Bold"/>
+						<TextBlock Text="{Binding SelectedRenter.RenterName}" FontWeight="Bold"/>
+						<TextBlock Text="   |   Nuværende reol: " FontWeight="Bold"/>
+						<TextBlock Text="{Binding SelectedRenter.ShelfNumbers}" FontWeight="Bold"/>
+						<TextBlock Text="   |   Ny reol: " FontWeight="Bold"/>
+						<TextBlock Text="{Binding SelectedShelf.ShelfID}" FontWeight="Bold"/>
+					</StackPanel>
+				</Border>
+
+				<!-- Pris pr. reol -->
+				<Border Grid.Row="4"
+                        Background="#F7E7C6"
+                        BorderBrush="#3A5A2A"
+                        BorderThickness="1">
+					<Grid Margin="20,0">
+						<TextBlock Text="Pris pr. reol inkl mængderabat"
+                                   VerticalAlignment="Center"/>
+						<TextBlock Text="{Binding PricePerShelf, StringFormat='{}{0:0}.-'}"
+                                   FontSize="16"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"/>
+					</Grid>
+				</Border>
+
+				<!-- Knapper -->
+				<Button Grid.Row="6"
+                        Content="Tilbage"
+                        Command="{Binding BackCommand}"
+                        Width="100"
+                        Height="36"
+                        HorizontalAlignment="Left"
+                        Background="White"
+                        Foreground="#3A5A2A"
+                        BorderBrush="#3A5A2A"
+                        FontWeight="Bold"/>
+
+				<Button Grid.Row="6"
+                        Content="Bekræft og gå til betaling"
+                        Command="{Binding ConfirmAndAddCommand}"
+                        Width="210"
+                        Height="36"
+                        HorizontalAlignment="Right"
+                        Background="#3A5A2A"
+                        Foreground="White"
+                        FontWeight="Bold"
+                        BorderThickness="0"/>
+			</Grid>
+
+		</Grid>
+	</Grid>
+</Window>
