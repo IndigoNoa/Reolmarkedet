@@ -12,14 +12,31 @@ using System.Windows.Shapes;
 
 namespace Reolmarkedet.Views
 {
-    /// <summary>
-    /// Interaction logic for AddRenterView.xaml
-    /// </summary>
     public partial class AddRenterView : Window
     {
         public AddRenterView()
         {
             InitializeComponent();
+            DataContext = new AddRenterViewModel(); // Sætter DataContext til ViewModel'en
+        }
+
+        private void AddRenterButton_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = DataContext as AddRenterViewModel;
+            if (viewModel != null)
+            {
+                // Kald funktionen til at tilføje en lejer i ViewModel
+                viewModel.AddRenter();
+                // Efter at have tilføjet, kan du klare inputfelterne, hvis nødvendigt
+                NameTextBox.Clear();
+                AddressTextBox.Clear();
+                PhoneTextBox.Clear();
+            }
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close(); // Lukker vinduet
         }
     }
 }
