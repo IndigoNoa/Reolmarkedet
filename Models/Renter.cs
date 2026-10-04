@@ -1,28 +1,88 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.ComponentModel;
+using Reolmarkedet.Commands;
+using Reolmarkedet.Models;
+using Reolmarkedet.Repositories;
 
 namespace Reolmarkedet.Models
 {
-    // Lejer klasse representerer lejeren som en enhed
-    public class Renter
+    public class Renter(string name) : ViewModelBase
     {
-        // Properties til lagring af lejerens oplysninger
-        public string Name { get; set; }
-    public string Address { get; set; }
-    public string Phone { get; set; }
-    public string Email { get; set; }
-    public int DesiredShelfCount { get; set; } // Ønsked antal reoler
+        private int id;
+        private string name = name;
+        private string? address;
+        private string? phone;
+        private string? email;
+        private int desiredShelfCount;
 
-    // konstruktør
-    public Renter(string name, string address, string phone, string email, int desiredShelfCount)
+        public int Id
+        {
+            get { return id; }
+            set
+            {
+                id = value;
+                OnPropertyChanged(nameof(Id));
+    }
+}
+
+        public string Name
     {
-        Name = name;
-        Address = address;
-        Phone = phone;
-        Email = email;
-        DesiredShelfCount = desiredShelfCount;
+            get { return name; }
+            set
+            {
+                name = value;
+                OnPropertyChanged(nameof(Name));
+            }
+        }
+
+        public string Address
+        {
+            get { return address; }
+            set
+        {
+                address = value;
+                OnPropertyChanged(nameof(Address));
+            }
+            }
+
+        public string Phone
+    {
+            get { return phone; }
+            set
+            {
+                phone = value;
+                OnPropertyChanged(nameof(Phone));
+            }
+        }
+
+        public string Email
+        {
+            get { return email; }
+            set
+            {
+                email = value;
+                OnPropertyChanged(nameof(Email));
+            }
+        }
+
+        public int DesiredShelfCount
+        {
+            get { return desiredShelfCount; }
+            set
+            {
+                desiredShelfCount = value;
+                OnPropertyChanged(nameof(DesiredShelfCount));
+            }
+            }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected new virtual void OnPropertyChanged(string propertyName)
+    {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
     }
+}
 }
