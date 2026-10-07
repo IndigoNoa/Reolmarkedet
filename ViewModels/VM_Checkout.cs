@@ -144,7 +144,7 @@ namespace Reolmarkedet.ViewModels
 				PaymentID = newPaymentID,
 				PaymentMethod = PaymentMethod,
 				AmountPaid = AmountToPay,
-				PaymentDate = DateTime.Now
+				PaymentDate = DateTime.Now,
 			};
 
 			allPayments.Add(payment);
@@ -174,7 +174,8 @@ namespace Reolmarkedet.ViewModels
 					ShelfID = item.ShelfID,
 					ItemPrice = item.ItemPrice,
 					PaymentID = newPaymentID,
-					SaleDate = DateTime.Now
+					SaleDate = DateTime.Now,
+					EmployeeID = Reolmarkedet.Models.CurrentSession.EmployeeID
 				});
 			}
 

@@ -13,5 +13,6 @@ namespace Reolmarkedet.Models
 		public decimal ItemPrice { get; set; }
 		public string PaymentID { get; set; }
 		public DateTime SaleDate { get; set; }
+		public string EmployeeID { get; set; }
 	}
 }

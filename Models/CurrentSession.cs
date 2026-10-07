@@ -8,5 +8,6 @@ namespace Reolmarkedet.Models
 	public static class CurrentSession
 	{
 		public static string EmployeeName { get; set; }
+		public static string EmployeeID { get; set; }
 	}
 }

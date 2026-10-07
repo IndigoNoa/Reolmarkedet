@@ -49,6 +49,7 @@ namespace Reolmarkedet.ViewModels
 					if (employee.EmployeePassword == _employeePassword)//Kontrollere om adgangskoden matcher med den indtastede adganskode
 					{
 						Reolmarkedet.Models.CurrentSession.EmployeeName = employee.EmployeeName;
+						Reolmarkedet.Models.CurrentSession.EmployeeID = employee.EmployeeID;
 						LoginSuccessful?.Invoke(this, new EventArgs()); //Aktiverer eventet, når loginoplysnignerne er korrekte
 					}
 				}
