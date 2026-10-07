@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using Reolmarkedet.Commands;
-using System.Windows.Input;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows;
-using Reolmarkedet.Views;
+using System.Windows.Input;
+using System.Windows.Media.Imaging;
+using Reolmarkedet.Commands;
 using Reolmarkedet.Models;
 using Reolmarkedet.Repositories;
+using Reolmarkedet.Views;
+using System.IO;
+using System.Windows.Media.Imaging;
+using BarcodeStandard;
 
 
 namespace Reolmarkedet.ViewModels
@@ -126,7 +131,9 @@ namespace Reolmarkedet.ViewModels
 			_itemsRepository.SaveAll(allItems);
 
 			ItemID = newItem.ItemID;
-			Barcode = newItem.Barcode;   
+			Barcode = newItem.Barcode;
+			GenerateBarcodeImage();
+
 
 			var oldWindow = Application.Current.Windows.OfType<AddItemView>().FirstOrDefault();
 			var itemCreatedView = new ItemCreatedView { DataContext = this };
@@ -171,9 +178,37 @@ namespace Reolmarkedet.ViewModels
 			var renter = _rentersRepository.GetAll().FirstOrDefault(r => r.RenterID == shelf.RenterID);
 			RenterName = renter != null ? renter.RenterName : "Ingen lejer tilknyttet";
 		}
-		private void ExecuteInputItemName() { }
-		private void ExecuteItemPriceInput() { }
-		private void ExecuteItemDescriptionNote() { }
+
+		private BitmapImage _barcodeImage;
+		public BitmapImage BarcodeImage
+		{
+			get => _barcodeImage;
+			set => SetProperty(ref _barcodeImage, value);
+		}
+
+		private void GenerateBarcodeImage() // Kosmetisk Stregkode når vi opretter en vare - Koden er tilhørende BarLib (fandt det på google)
+		{
+			var barcode = new Barcode();
+			var image = barcode.Encode(BarcodeStandard.Type.Code128, Barcode.ToString(), SkiaSharp.SKColors.Black, SkiaSharp.SKColors.White, 300, 100);
+
+			using var memoryStream = new MemoryStream();
+			using var data = image.Encode(SkiaSharp.SKEncodedImageFormat.Png, 100);
+			data.SaveTo(memoryStream);
+			memoryStream.Position = 0;
+
+			var bitmapImage = new BitmapImage();
+			bitmapImage.BeginInit();
+			bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+			bitmapImage.StreamSource = memoryStream;
+			bitmapImage.EndInit();
+			bitmapImage.Freeze();
+
+			BarcodeImage = bitmapImage;
+		}
+
+		private void ExecuteInputItemName() { } // Overflødig
+		private void ExecuteItemPriceInput() { } // Overflødig
+		private void ExecuteItemDescriptionNote() { } // Overflødig
 		public void ExecuteShowRenterName(string shelfID) { }
 
 

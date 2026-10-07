@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="BarcodeLib" Version="3.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Data\employees.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

@@ -61,10 +61,12 @@
 				</TextBlock>
 			</StackPanel>
 
-			<!-- Stregkode (midlertidigt en boks med tallet, biblioteket kommer senere) -->
-			<Border Width="230" Height="80" Background="White" BorderBrush="#3A5A2A" BorderThickness="1"
-                    CornerRadius="8" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="60,180,0,0">
-				<TextBlock Text="{Binding Barcode}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+			<Border Width="230" Height="100" Background="White" BorderBrush="#3A5A2A" BorderThickness="1"
+			 CornerRadius="8" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="60,180,0,0">
+				<StackPanel>
+					<Image Source="{Binding BarcodeImage}" Width="200" Height="70" Margin="0,5,0,0"/>
+					<TextBlock Text="{Binding Barcode}" HorizontalAlignment="Center" FontSize="10"/>
+				</StackPanel>
 			</Border>
 
 			<!-- Print label (bundet til PrintLabelCommand) -->

@@ -46,7 +46,7 @@
                         <Run Text="Lejer "/><Run Text="{Binding RenterName}"/><Run Text=" opsagt."/>
 					</TextBlock>
 					<TextBlock FontStyle="Italic" FontWeight="Bold" Margin="0,8,0,0">
-                        <Run Text="Lejers reol: "/><Run Text="{Binding ShelfIDsText}"/>
+                        <Run Text="Lejers reol: "/><Run Text="{Binding ShelfIDsText, Mode=OneWay}"/>
 					</TextBlock>
 					<TextBlock FontStyle="Italic" Margin="0,15,0,0"
                                Text="Leje af eventuelle reoler fortsætter måneden ud."/>

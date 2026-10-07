@@ -43,7 +43,7 @@
 					<TextBlock Text="{Binding RenterName}" Margin="0,0,0,4"/>
 					<TextBlock Margin="0,0,0,20">
                         <Run Text="Reol(er): " FontWeight="Bold"/>
-                        <Run Text="{Binding ShelfIDsText}"/>
+                       <Run Text="{Binding ShelfIDsText, Mode=OneWay}"/>
 					</TextBlock>
 				</StackPanel>
 			</Border>
