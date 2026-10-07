@@ -4,6 +4,7 @@ using Reolmarkedet.Repositories;
 using System.Windows.Input;
 using System.Collections.Generic;
 using System.Windows;
+using Reolmarkedet.Models;
 
 namespace Reolmarkedet.ViewModels
 {
@@ -47,6 +48,7 @@ namespace Reolmarkedet.ViewModels
 
 					if (employee.EmployeePassword == _employeePassword)//Kontrollere om adgangskoden matcher med den indtastede adganskode
 					{
+						Reolmarkedet.Models.CurrentSession.EmployeeName = employee.EmployeeName;
 						LoginSuccessful?.Invoke(this, new EventArgs()); //Aktiverer eventet, når loginoplysnignerne er korrekte
 					}
 				}

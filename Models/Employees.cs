@@ -20,5 +20,7 @@ namespace Reolmarkedet.Models
 			get { return _employeePassword; }
 			set { _employeePassword = value; }
 		}
+
+		public string EmployeeName { get; set; } // Med til at tilføje Medarbejder navn på kvittering
 	}
 }

@@ -9,6 +9,9 @@ using System.Linq;
 using System.Windows;
 using Reolmarkedet.Views;
 using Reolmarkedet.Repositories;
+using System.IO;
+using System.Windows.Media.Imaging;
+using BarcodeStandard; 
 
 
 namespace Reolmarkedet.ViewModels
@@ -180,7 +183,7 @@ namespace Reolmarkedet.ViewModels
 			// Gemmer felter til kvitteringen
 			PaymentID = newPaymentID;
 			SaleDate = DateTime.Now;
-			ServedBy = "Reolmarkedet";   // Midlertidig, til login-flowet kan levere den rigtige medarbejder
+			ServedBy = Reolmarkedet.Models.CurrentSession.EmployeeName;
 
 			// Navigerer videre til kvitteringen (uændret fra før)
 			var oldWindow = Application.Current.Windows.OfType<PaymentMethodView>().FirstOrDefault();
@@ -189,12 +192,18 @@ namespace Reolmarkedet.ViewModels
 			receiptView.Show();
 			oldWindow?.Close();
 		}
-		private void ExecutePrintReceipt() { }
+		private void ExecutePrintReceipt() { } // Måske død kode
 		private void ExecuteReturnToCheckout()
 		{
-			// Bruges både af "Tilbage" (fra Betaling) og "Afslut uden kvittering" (fra Kvittering)
 			var oldWindow = Application.Current.Windows.OfType<Window>()
 				.FirstOrDefault(w => w is PaymentMethodView || w is ReceiptView);
+
+			// Rydder kurven og nulstiller felterne, klar til et nyt køb efter den visuelle kvittering bliver vist
+			ScannedCheckoutItems.Clear();
+			AmountToPay = 0;
+			BarCode = string.Empty;
+			BarcodeImage = null;
+
 			var checkoutView = new CheckoutView { DataContext = this };
 			CopyWindowPosition(oldWindow, checkoutView);
 			checkoutView.Show();
@@ -224,6 +233,7 @@ namespace Reolmarkedet.ViewModels
 				return;   // Varen findes ikke, gør ingenting (kunne evt. vise en fejlbesked senere)
 
 			ScannedCheckoutItems.Add(foundItem);
+			GenerateBarcodeImage(barcodeNumber);   // Viser stregkoden for den senest scannede vare
 			AmountToPay = ScannedCheckoutItems.Sum(i => i.ItemPrice);   // Genberegner total
 			BarCode = string.Empty;   // Rydder feltet, klar til næste scan
 		}
@@ -238,6 +248,34 @@ namespace Reolmarkedet.ViewModels
 			ExecutePayment();   // Går direkte videre til kvitteringen
 								// Vi behøver ikke at vise selve betalingsprocessen. Ovenstående metode går bare videre til kvittering (altså at vi "registrerer betalingen")
 		}
+
+		private BitmapImage _barcodeImage;
+		public BitmapImage BarcodeImage
+		{
+			get => _barcodeImage;
+			set => SetProperty(ref _barcodeImage, value);
+		}
+
+		private void GenerateBarcodeImage(int barcodeNumber)
+		{
+			var barcode = new Barcode();
+			var image = barcode.Encode(BarcodeStandard.Type.Code128, barcodeNumber.ToString(), SkiaSharp.SKColors.Black, SkiaSharp.SKColors.White, 200, 60);
+
+			using var memoryStream = new MemoryStream();
+			using var data = image.Encode(SkiaSharp.SKEncodedImageFormat.Png, 100);
+			data.SaveTo(memoryStream);
+			memoryStream.Position = 0;
+
+			var bitmapImage = new BitmapImage();
+			bitmapImage.BeginInit();
+			bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+			bitmapImage.StreamSource = memoryStream;
+			bitmapImage.EndInit();
+			bitmapImage.Freeze();
+
+			BarcodeImage = bitmapImage;
+		}
+
 	}
 
 }
