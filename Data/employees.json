@@ -2,16 +2,16 @@
 	{
 		"EmployeeID": "SK001",
 		"EmployeePassword": "S123",
-		"EmployeeName":  "Navn1"
+		"EmployeeName":  "Sofie Kragh (Admin)"
 	},
 	{
 		"EmployeeID": "JM001",
 		"EmployeePassword": "J123",
-		"EmployeeName":  "Navn2"
+		"EmployeeName":  "Jonas Møller (Admin)"
 	},
 	{
 		"EmployeeID": "ML001",
 		"EmployeePassword": "M123",
-		"EmployeeName": "Navn3"
+		"EmployeeName": "Mette Larsem"
 	}
 ]
