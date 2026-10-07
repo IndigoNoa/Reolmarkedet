@@ -27,12 +27,16 @@ namespace Reolmarkedet.ViewModels
 		private readonly IItemsRepository _itemsRepository = new JsonItemsRepository();
 
 		public string ShelfID
-        {
-            get => _shelfID;                                            // Returnerer den gemte værdi
-            set => SetProperty(ref _shelfID, value);                    // Gemmer værdien, og giver UI'et besked om ændringen
-        }
+		{
+			get => _shelfID;
+			set
+			{
+				SetProperty(ref _shelfID, value);
+				ExecuteSearchRenterName();   // Slår automatisk lejeren op, hver gang reolnummeret ændres
+			}
+		}
 
-        public string RenterName
+		public string RenterName
         {
             get => _renterName;
             set => SetProperty(ref _renterName, value);
@@ -140,9 +144,33 @@ namespace Reolmarkedet.ViewModels
 			itemCreatedView.Show();
 			oldWindow?.Close();
 		}
-		private void ExecuteHome() { }
+		private void ExecuteHome()
+		{
+			var oldWindow = Application.Current.Windows.OfType<Window>()
+				.FirstOrDefault(w => w is AddItemView || w is ItemCreatedView);
+
+			var menuView = new MenuView { DataContext = new VM_MenuView() };
+			menuView.Show();
+			oldWindow?.Close();
+		}
 		private void ExecutePrintLabel() { }
-		private void ExecuteSearchRenterName() { }
+
+		// Læser gennem det valgte Repo
+		private readonly IShelvesRepository _shelvesRepository = new JsonShelvesRepository();
+		private readonly IRentersRepository _rentersRepository = new JsonRentersRepository();
+
+		private void ExecuteSearchRenterName()
+		{
+			var shelf = _shelvesRepository.GetAll().FirstOrDefault(s => s.ShelfID == ShelfID);
+			if (shelf == null)
+			{
+				RenterName = "Reol ikke fundet";
+				return;
+			}
+
+			var renter = _rentersRepository.GetAll().FirstOrDefault(r => r.RenterID == shelf.RenterID);
+			RenterName = renter != null ? renter.RenterName : "Ingen lejer tilknyttet";
+		}
 		private void ExecuteInputItemName() { }
 		private void ExecuteItemPriceInput() { }
 		private void ExecuteItemDescriptionNote() { }

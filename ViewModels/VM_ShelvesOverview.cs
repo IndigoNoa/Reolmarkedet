@@ -108,7 +108,7 @@ namespace Reolmarkedet.ViewModels
 			// Opretter popup'en. Når den lukkes, sættes ShelfDetails til null
 			var details = new VM_ShelfDetails(selectedShelf, () => ShelfDetails = null);
 
-			/*
+			
             // Aktiveres, når Renter-modellen er færdig
             var renter = _rentersRepository.GetAll()
                 .Find(r => r.RenterID == selectedShelf.RenterID);
@@ -119,12 +119,12 @@ namespace Reolmarkedet.ViewModels
                 details.RenterPhone = renter.RenterPhone;
                 details.RenterEmail = renter.RenterEmail;
             }
-            */
+            
 
 			ShelfDetails = details;
 		}
 
-		/*
+		
         // Finder lejere, som er tilknyttet en reol
         // Udkommenteret indtil Renter-modellen er færdig
         public List<Renter> FindAssociatedRenters()
@@ -135,7 +135,7 @@ namespace Reolmarkedet.ViewModels
                 _shelvesRepository.GetAll()
                     .Exists(shelf => shelf.RenterID == renter.RenterID));
         }
-        */
+        
 
 		/*
         // Indlæser de lejere, der er tilknyttet reolerne

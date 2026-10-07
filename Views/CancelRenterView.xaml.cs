@@ -21,5 +21,14 @@ namespace Reolmarkedet.Views
         {
             InitializeComponent();
         }
-    }
+
+		private void RenterItem_DoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+		{
+			if (sender is System.Windows.Controls.ListBoxItem item && item.DataContext is Reolmarkedet.Models.Renter renter)
+			{
+				var vm = (Reolmarkedet.ViewModels.VM_CancelRenter)DataContext;
+				vm.NextCommand.Execute(renter);
+			}
+		}
+	}
 }

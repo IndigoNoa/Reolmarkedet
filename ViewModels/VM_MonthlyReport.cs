@@ -6,6 +6,9 @@ using System.Windows.Input;
 using Reolmarkedet.Commands;
 using Reolmarkedet.Models;
 using Reolmarkedet.Repositories;
+using System.Linq;
+using System.Windows;
+using Reolmarkedet.Views;
 
 namespace Reolmarkedet.ViewModels
 {
@@ -140,23 +143,92 @@ namespace Reolmarkedet.ViewModels
 
 		public VM_MonthlyReport()
 		{
-			CreateReportCommand = new RelayCommand(ExecuteCreateReport);
+			CreateReportCommand = new RelayCommand(param => ExecuteCreateReport(param as Renter));
 			ShowReportCommand = new RelayCommand(ExecuteShowReport);
 			HomeCommand = new RelayCommand(ExecuteHome);
 			NextCommand = new RelayCommand(ExecuteNext);
 			ConfirmReportCommand = new RelayCommand(ExecuteConfirmReport);
 			ReportOverviewCommand = new RelayCommand(ExecuteReportOverview);
+			ExecuteLoadRenter();
 		}
 
-		// Execute-metoder til commands (tomme skeletter for nu)
-		private void ExecuteCreateReport() { }
-		private void ExecuteShowReport() { }
-		private void ExecuteHome() { }
-		private void ExecuteNext() { }
-		private void ExecuteConfirmReport() { }
-		private void ExecuteReportOverview() { }
+		// Execute-metoder til commands 
+		private void ExecuteCreateReport(Renter selectedRenter)
+		{
+			if (selectedRenter == null) return;
 
-		// Hjælpemetoder: indlæser data fra repositories
+			RenterID = selectedRenter.RenterID;
+			RenterName = selectedRenter.RenterName;
+			ReportPeriod = DateTime.Now;
+
+			ExecuteLoadSales();
+			ExecuteLoadItems();
+			CalculateRenterBalance();
+			var oldWindow = Application.Current.Windows.OfType<MonthlyReportView>().FirstOrDefault();
+			var detailView = new MonthlyReportDetailView { DataContext = this };
+			CopyWindowPosition(oldWindow, detailView);
+			detailView.Show();
+			oldWindow?.Close();
+		}
+
+		private void ExecuteShowReport() { }
+		private void ExecuteHome()
+		{
+			var oldWindow = Application.Current.Windows.OfType<Window>()
+				.FirstOrDefault(w => w is MonthlyReportView || w is MonthlyReportDetailView || w is MonthlyReportPreviewView || w is MonthlyReportConfirmedView);
+
+			var menuView = new MenuView { DataContext = new VM_MenuView() };
+			menuView.Show();
+			oldWindow?.Close();
+		}
+		private void ExecuteNext()
+		{
+			var oldWindow = Application.Current.Windows.OfType<MonthlyReportDetailView>().FirstOrDefault();
+			var previewView = new MonthlyReportPreviewView { DataContext = this };
+			CopyWindowPosition(oldWindow, previewView);
+			previewView.Show();
+			oldWindow?.Close();
+		}
+		private void ExecuteConfirmReport()
+		{
+			ExecuteSaveReport();
+
+			var oldWindow = Application.Current.Windows.OfType<MonthlyReportPreviewView>().FirstOrDefault();
+			var confirmedView = new MonthlyReportConfirmedView { DataContext = this };
+			CopyWindowPosition(oldWindow, confirmedView);
+			confirmedView.Show();
+			oldWindow?.Close();
+		}
+		private void ExecuteReportOverview()
+		{
+			GoBackToReportList();
+		}
+
+		private void GoBackToReportList()
+		{
+			var oldWindow = Application.Current.Windows.OfType<Window>()
+				.FirstOrDefault(w => w is MonthlyReportDetailView || w is MonthlyReportPreviewView || w is MonthlyReportConfirmedView);
+
+			ExecuteLoadRenter();
+
+			var reportListView = new MonthlyReportView { DataContext = this };
+			CopyWindowPosition(oldWindow, reportListView);
+			reportListView.Show();
+			oldWindow?.Close();
+		}
+
+		private void CopyWindowPosition(Window oldWindow, Window newWindow)
+		{
+			if (oldWindow == null) return;
+			newWindow.WindowStartupLocation = WindowStartupLocation.Manual;
+			newWindow.Left = oldWindow.Left;
+			newWindow.Top = oldWindow.Top;
+			newWindow.Width = oldWindow.Width;
+			newWindow.Height = oldWindow.Height;
+			newWindow.WindowState = oldWindow.WindowState;
+		}
+
+		// Hjælpemetoder: indlæser data fra repositorie
 		private void ExecuteLoadRenter()
 		{
 			AllRenters.Clear();
@@ -178,16 +250,17 @@ namespace Reolmarkedet.ViewModels
 			_allItems = _itemsRepository.GetAll();
 		}
 
+		/*
 		private string GetItemName(string itemID)
 		{
-			var item = _allItems.FirstOrDefault(i => i.ItemID == itemID);
+			var item = _allItems.FirstOrDefault(i => i.ItemID == itemID);									// Død kode
 			return item?.ItemName ?? "Ukendt vare";
 		}
 
 		private void ExecuteMonthlyReport()
 		{
-			// Selve beregningslogikken (kommission, leje, rabat, saldo) bygges i CreateMonthlyReport()
-		}
+			// Selve beregningslogikken (kommission, leje, rabat, saldo) bygges i CreateMonthlyReport()		// Død Kode
+		} */
 
 		private void ExecuteSaveReport()
 		{
@@ -218,15 +291,42 @@ namespace Reolmarkedet.ViewModels
 
 		private void CalculateRenterBalance()
 		{
-			// Finder alle salg for den valgte lejers reol(er) i perioden
-			var renterSales = PeriodSales.Where(s => s.ShelfID == RenterID).ToList();
-			// OBS: Dette antager RenterID == ShelfID, hvilket sjældent er rigtigt - se note nedenfor
+			// Finder lejerens reoler
+			var shelvesRepository = new JsonShelvesRepository();
+			var renterShelfIDs = shelvesRepository.GetAll()
+				.Where(s => s.RenterID == RenterID)
+				.Select(s => s.ShelfID)
+				.ToList();
+
+			// Finder alle salg, der er sket på en af de reoler
+			var renterSales = PeriodSales.Where(s => renterShelfIDs.Contains(s.ShelfID)).ToList();
 
 			decimal totalSales = renterSales.Sum(s => s.ItemPrice);
-			Commission = totalSales * 0.10m;   // 10% kommission, jf. jeres Hi-Fi
+			Commission = totalSales * 0.10m;   // 10%, jf. jeres Hi-Fi
 
-			RenterBalance = totalSales - Commission - Rent + MultipleShelvesDiscount;
+			// Leje ud fra rabattrappen, baseret på antal reoler
+			int shelfCount = renterShelfIDs.Count;
+			decimal pricePerShelf = shelfCount == 1 ? 850
+								   : shelfCount <= 3 ? 825
+								   : 800;
+
+			Rent = pricePerShelf * shelfCount;
+			MultipleShelvesDiscount = shelfCount > 1 ? (850 - pricePerShelf) * shelfCount : 0;
+
+			RenterBalance = totalSales - Commission - Rent;
 		}
+		
+		// Metode, der tjekker vores "Opgjort/Ikke Opgjort logik", dog ville den primært blive brugt til efterudivkling, så dette er primært visuelt for at vise flow
+		private bool IsRenterReported(string renterID)
+		{
+			var allReports = _monthlyReportsRepository.GetAll();
+			return allReports.Any(r => r.RenterID == renterID
+				&& r.ReportPeriod.Month == DateTime.Now.Month
+				&& r.ReportPeriod.Year == DateTime.Now.Year);
+		}
+
+		// Beregnet property: bruges af XAML til at vise rigtig status-tekst
+		public Func<string, string> GetReportStatusText => renterID => IsRenterReported(renterID) ? "Opgjort" : "Ikke opgjort";
 
 	}
 

@@ -1,0 +1,86 @@
+﻿<Window x:Class="Reolmarkedet.Views.AddRenterPaymentView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Reolmarkedet.ViewModels"
+        Title="AddRenterPaymentView" Height="500" Width="850">
+
+	<Window.Resources>
+		<Style TargetType="Button">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="1" CornerRadius="8">
+							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"
+                                               Margin="10,0"/>
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</Window.Resources>
+
+	<Grid Background="#D8C5B9">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+
+		<Border Grid.Row="0" Background="#3A5A2A" Height="50">
+			<TextBlock Text="Reolmarkedet" Foreground="White" FontSize="20" FontWeight="Bold"
+                       VerticalAlignment="Center" Margin="40,0,0,0"/>
+		</Border>
+
+		<Grid Grid.Row="1" Margin="40,20,40,20">
+			<TextBlock Text="Afregning" FontSize="24" FontWeight="Bold"
+                       HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+			<!-- Reolnummer og beløb for periode -->
+			<Border Background="#EFE1C7" BorderBrush="#3A5A2A" BorderThickness="1" CornerRadius="8"
+                    Padding="20,15" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,50,0,0">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="Auto"/>
+					</Grid.ColumnDefinitions>
+
+					<TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding RenterShelfAmount, StringFormat=Antal reoler: {0}}"/>
+					<TextBlock Grid.Column="0" Text="Beløb for periode:" Margin="0,10,46,14" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+
+					<TextBlock Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Text="Ialt:" FontSize="20"
+                               VerticalAlignment="Center" Margin="0,0,15,0"/>
+				</Grid>
+			</Border>
+
+			<!-- Beløb til betaling -->
+			<Border Background="#EFE1C7" BorderBrush="#3A5A2A" BorderThickness="1" CornerRadius="8"
+                    Padding="20,15" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,150,0,0">
+				<Grid>
+					<TextBlock Text="Beløb til betaling" FontSize="16" HorizontalAlignment="Left"/>
+					<TextBlock Text="{Binding AmountToPay, StringFormat={}{0}.-}" FontSize="20" FontWeight="Bold"
+                               HorizontalAlignment="Right"/>
+				</Grid>
+			</Border>
+
+			<TextBlock Text="Vælg betalingsmetode for at færdiggøre transaktion" FontStyle="Italic"
+                       HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,240,0,0"/>
+
+			<!-- Kontant (bundet til SelectPaymentMethodCommand) -->
+			<Button Content="Kontant betaling" Command="{Binding SelectPaymentMethodCommand}" CommandParameter="Kontant"
+                    Background="White" BorderBrush="#3A5A2A" Foreground="#3A5A2A" FontWeight="Bold"
+                    Width="260" Height="50"
+                    HorizontalAlignment="Left" VerticalAlignment="Top" Margin="116,290,0,0"/>
+
+			<!-- MobilePay (bundet til SelectPaymentMethodCommand) -->
+			<Button Content="MobilePay" Command="{Binding SelectPaymentMethodCommand}" CommandParameter="MobilePay"
+                    Background="#5A6FE0" Foreground="White" FontWeight="Bold"
+                    Width="260" Height="50"
+                    HorizontalAlignment="Left" VerticalAlignment="Top" Margin="440,290,0,0"/>
+		</Grid>
+	</Grid>
+</Window>

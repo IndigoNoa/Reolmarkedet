@@ -9,6 +9,7 @@
 	</Window.DataContext>
 
 	<Window.Resources>
+		<vm:RenterReportStatusConverter x:Key="ReportStatusConverter"/>
 		<Style TargetType="Button">
 			<Setter Property="Template">
 				<Setter.Value>
@@ -57,8 +58,7 @@
 					<DataGridTemplateColumn Header="Status" Width="Auto">
 						<DataGridTemplateColumn.CellTemplate>
 							<DataTemplate>
-								<TextBlock Text="Status" Margin="10,0"/>
-								<!-- Udfyldes med rigtig status-visning, når Renter-modellen er på plads -->
+								<TextBlock Text="{Binding RenterID, Converter={StaticResource ReportStatusConverter}}" Margin="10,0"/>
 							</DataTemplate>
 						</DataGridTemplateColumn.CellTemplate>
 					</DataGridTemplateColumn>
