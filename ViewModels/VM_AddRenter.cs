@@ -108,8 +108,10 @@ namespace Reolmarkedet.ViewModels
 
 		public string ShelfIDsText => ShelfList != null ? string.Join(", ", ShelfList.Select(s => s.ShelfID)) : "";
 
-		// Repository
-		private readonly IRentersRepository _rentersRepository = new JsonRentersRepository();
+		// JSON Repository til test af gemmelogik
+		/*private readonly IRentersRepository _rentersRepository = new JsonRentersRepository();*/
+		// SQL Repository
+		private readonly IRentersRepository _rentersRepository = new SqlRentersRepository();
 
 		// Commands
 		public ICommand RenterNameInputCommand { get; }
@@ -217,7 +219,8 @@ namespace Reolmarkedet.ViewModels
 			AddRenterDate = DateTime.Now;
 
 			// Markerer de valgte reoler som udlejet til den nye lejer
-			var shelvesRepository = new JsonShelvesRepository();
+			/*var shelvesRepository = new JsonShelvesRepository();*/ // Json
+			var shelvesRepository = new SqlShelvesRepository(); // SQL
 			var allShelves = shelvesRepository.GetAll();
 
 			foreach (var selectedShelf in ShelfList)

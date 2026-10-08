@@ -160,12 +160,13 @@ namespace Reolmarkedet.ViewModels
 			}
 			_itemsRepository.SaveAll(allItems);
 
-			// Opretter ét salg per vare i kurven, alle med samme SaleID
+			// Opretter ét salg per vare i kurven, hver med sit eget SaleID
 			var allSales = _salesRepository.GetAll();
-			string newSaleID = "S_" + (allSales.Count + 1).ToString("D2");
 
 			foreach (var item in ScannedCheckoutItems)
 			{
+				string newSaleID = "S_" + (allSales.Count + 1).ToString("D2");
+
 				allSales.Add(new Sales
 				{
 					SaleID = newSaleID,
@@ -178,6 +179,8 @@ namespace Reolmarkedet.ViewModels
 					EmployeeID = Reolmarkedet.Models.CurrentSession.EmployeeID
 				});
 			}
+
+			_salesRepository.SaveAll(allSales);
 
 			_salesRepository.SaveAll(allSales);
 

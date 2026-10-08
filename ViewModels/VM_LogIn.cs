@@ -32,7 +32,8 @@ namespace Reolmarkedet.ViewModels
 
 		public VM_LogIn() //Opretter LoginCommand, når LoginViewModel'en oprettes 
 		{
-			_employeesRepository = new JsonEmployeesRepository(); //Opretter repository'et, der henter medarbejderoplysninger fra JSON-filen
+			/*_employeesRepository = new JsonEmployeesRepository();*/ //Opretter repository'et, der henter medarbejderoplysninger fra JSON-filen
+			_employeesRepository = new SqlEmployeesRepository(); // SQL Repository
 
 			LoginCommand = new RelayCommand(ExecuteLogin); //Forbinder LoginCommand med metoden, der håndterer loginforsøget
 		}

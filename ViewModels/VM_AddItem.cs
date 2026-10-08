@@ -29,7 +29,8 @@ namespace Reolmarkedet.ViewModels
         private decimal _itemPrice;
         private int _barcode;
         private string _itemDescription;
-		private readonly IItemsRepository _itemsRepository = new JsonItemsRepository();
+		/*private readonly IItemsRepository _itemsRepository = new JsonItemsRepository();*/ // JSON
+		private readonly IItemsRepository _itemsRepository = new SqlItemsRepository(); // SQL
 
 		public string ShelfID
 		{
@@ -163,8 +164,10 @@ namespace Reolmarkedet.ViewModels
 		private void ExecutePrintLabel() { }
 
 		// Læser gennem det valgte Repo
-		private readonly IShelvesRepository _shelvesRepository = new JsonShelvesRepository();
-		private readonly IRentersRepository _rentersRepository = new JsonRentersRepository();
+		/*private readonly IShelvesRepository _shelvesRepository = new JsonShelvesRepository(); // json
+		private readonly IRentersRepository _rentersRepository = new JsonRentersRepository();*/ // json
+		private readonly IShelvesRepository _shelvesRepository = new SqlShelvesRepository(); // SQL
+		private readonly IRentersRepository _rentersRepository = new SqlRentersRepository(); // SQL
 
 		private void ExecuteSearchRenterName()
 		{

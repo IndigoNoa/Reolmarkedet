@@ -20,10 +20,12 @@ namespace Reolmarkedet.ViewModels
 		private VM_ShelfDetails _shelfDetails;
 
 		// Repository til at hente reoldata
-		private readonly IShelvesRepository _shelvesRepository = new JsonShelvesRepository();
+		/*private readonly IShelvesRepository _shelvesRepository = new JsonShelvesRepository();*/ // json
+		private readonly IShelvesRepository _shelvesRepository = new SqlShelvesRepository(); // SQL
 
 		// Repository til at hente lejerdata
-		private readonly IRentersRepository _rentersRepository = new JsonRentersRepository();
+		/*private readonly IRentersRepository _rentersRepository = new JsonRentersRepository();*/ // json
+		private readonly IRentersRepository _rentersRepository = new SqlRentersRepository(); // SQL
 
 		// Properties som Viewet binder til
 		public string RenterID

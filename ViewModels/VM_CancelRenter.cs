@@ -54,8 +54,11 @@ namespace Reolmarkedet.ViewModels
 		public ObservableCollection<Renter> SearchResults { get; } = new ObservableCollection<Renter>();
 
 		// Repositories
-		private readonly IRentersRepository _rentersRepository = new JsonRentersRepository();
-		private readonly IShelvesRepository _shelvesRepository = new JsonShelvesRepository();
+		/*private readonly IRentersRepository _rentersRepository = new JsonRentersRepository(); // JSON
+		private readonly IShelvesRepository _shelvesRepository = new JsonShelvesRepository();*/ // JSON
+		private readonly IRentersRepository _rentersRepository = new SqlRentersRepository(); // SQL
+		private readonly IShelvesRepository _shelvesRepository = new SqlShelvesRepository(); // SQL
+
 
 		// Commands
 		public ICommand SearchRenterNameInputCommand { get; }

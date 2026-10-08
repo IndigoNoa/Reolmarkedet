@@ -12,7 +12,8 @@ namespace Reolmarkedet.ViewModels
 {
 	public class VM_SelectShelfForRenter : ViewModelBase
 	{
-		private readonly IShelvesRepository _shelvesRepository = new JsonShelvesRepository();
+		/*private readonly IShelvesRepository _shelvesRepository = new JsonShelvesRepository();*/ // Json 
+		private readonly IShelvesRepository _shelvesRepository = new SqlShelvesRepository(); // SQL
 		private readonly VM_AddRenter _addRenterViewModel;   // Den ViewModel vi skal sende resultatet tilbage til
 
 		public ObservableCollection<Shelves> AvailableShelves { get; } = new ObservableCollection<Shelves>();
