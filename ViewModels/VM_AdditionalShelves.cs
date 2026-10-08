@@ -5,6 +5,8 @@ using System.Windows.Input;
 using Reolmarkedet.Commands;
 using Reolmarkedet.Models;
 using Reolmarkedet.Repositories;
+using System.Windows;
+using Reolmarkedet.Views;
 
 namespace Reolmarkedet.ViewModels
 {
@@ -24,12 +26,16 @@ namespace Reolmarkedet.ViewModels
 		private Shelves _selectedShelf;
 		private decimal _pricePerShelf;
 		private decimal _multipleShelvesDiscount;
+		private decimal _amountToPay;
+		private int _renterShelfAmount;
+		private PaymentMethod _paymentMethod;
 
 
 		private List<RenterListItem> _allRenters = new List<RenterListItem>();
 
 		// Repositories til at hente og gemme data
-		private readonly IShelvesRepository _shelvesRepository = new JsonShelvesRepository();
+		/*private readonly IShelvesRepository _shelvesRepository = new JsonShelvesRepository();*/ // JSON
+		private readonly IShelvesRepository _shelvesRepository = new SqlShelvesRepository(); // SQL
 		// Nedenstående aktiveres ved merge
 		// private readonly IRentersRepository _rentersRepository = new JsonRentersRepository();
 
@@ -87,6 +93,31 @@ namespace Reolmarkedet.ViewModels
 			set => SetProperty(ref _multipleShelvesDiscount, value);
 		}
 
+		public decimal AmountToPay
+		{
+			get => _amountToPay;
+			set => SetProperty(ref _amountToPay, value);
+		}
+
+		public int RenterShelfAmount
+		{
+			get => _renterShelfAmount;
+			set => SetProperty(ref _renterShelfAmount, value);
+		}
+
+		public PaymentMethod PaymentMethod
+		{
+			get => _paymentMethod;
+			set => SetProperty(ref _paymentMethod, value);
+		}
+
+		// Bruges af bekræftelsesvinduet (RenterCreatedView)
+		public string RenterName { get; set; }
+		public string ShelfIDsText { get; set; }
+		public DateTime AddRenterDate { get; set; }
+
+		public ICommand SelectPaymentMethodCommand { get; }
+
 		// Commands som knapperne i Viewet binder til
 		public ICommand HomeCommand { get; }
 		public ICommand BackCommand { get; }
@@ -104,6 +135,7 @@ namespace Reolmarkedet.ViewModels
 			SearchRenterNameInputCommand = new RelayCommand(ExecuteRenterNameSearch);
 			NextCommand = new RelayCommand(ExecuteNext, CanExecuteNext);
 			ConfirmAndAddCommand = new RelayCommand(ExecuteConfirmAndAdd);
+			SelectPaymentMethodCommand = new RelayCommand(param => ExecuteSelectPaymentMethod(param as string));
 
 			ExecuteLoadRenter();
 		}
@@ -172,17 +204,30 @@ namespace Reolmarkedet.ViewModels
 				PricePerShelf = PriceOneShelf;
 
 			MultipleShelvesDiscount = PriceOneShelf - PricePerShelf;
+			RenterShelfAmount = totalCount;
+			AmountToPay = PricePerShelf * totalCount;
 		}
 
-		// Gemmer den nye reol på lejeren og går videre til betaling
+		// Åbner betalingsvinduet. Reolen gemmes først, når betalingsmetoden er valgt
 		private void ExecuteConfirmAndAdd()
 		{
 			if (SelectedRenter == null || SelectedShelf == null)
 				return;
 
+			CalculatePrice(); 
+			var oldWindow = Application.Current.Windows.OfType<AdditionalShelvesView>().FirstOrDefault();
+			var paymentView = new AddRenterPaymentView { DataContext = this };
+			CopyWindowPosition(oldWindow, paymentView);
+			paymentView.Show();
+			oldWindow?.Close();
+		}
+
+		private void ExecuteSelectPaymentMethod(string method)
+		{
+			PaymentMethod = method == "MobilePay" ? PaymentMethod.MobilePay : PaymentMethod.Kontant;
+
 			var all = _shelvesRepository.GetAll();
 			var shelf = all.Find(s => s.ShelfID == SelectedShelf.ShelfID);
-
 			if (shelf == null || shelf.ShelfStatus != "Ledig")
 				return;
 
@@ -190,11 +235,29 @@ namespace Reolmarkedet.ViewModels
 			shelf.ShelfStatus = "Udlejet";
 			shelf.RentalStartDate = DateTime.Today;
 			shelf.CancellationDate = null;
-
 			_shelvesRepository.SaveAll(all);
 
-			// TODO: åbn betalingsvisningen her
-			_onConfirmed?.Invoke();
+			RenterName = SelectedRenter.RenterName;
+			ShelfIDsText = SelectedShelf.ShelfID;
+			AddRenterDate = DateTime.Today;
+			CurrentStep = 4;   // Markerer, at flowet er færdigt (bruges af ExecuteHome)
+
+			var oldWindow = Application.Current.Windows.OfType<AddRenterPaymentView>().FirstOrDefault();
+			var doneView = new RenterCreatedView { DataContext = this };
+			CopyWindowPosition(oldWindow, doneView);
+			doneView.Show();
+			oldWindow?.Close();
+		}
+
+		private void CopyWindowPosition(Window oldWindow, Window newWindow)
+		{
+			if (oldWindow == null) return;
+			newWindow.WindowStartupLocation = WindowStartupLocation.Manual;
+			newWindow.Left = oldWindow.Left;
+			newWindow.Top = oldWindow.Top;
+			newWindow.Width = oldWindow.Width;
+			newWindow.Height = oldWindow.Height;
+			newWindow.WindowState = oldWindow.WindowState;
 		}
 
 		// NAVIGATION
@@ -230,9 +293,17 @@ namespace Reolmarkedet.ViewModels
 				ExecuteHome();
 		}
 
-		// Går tilbage til menuen
 		private void ExecuteHome()
 		{
+			if (CurrentStep == 4)
+			{
+				var oldWindow = Application.Current.Windows.OfType<RenterCreatedView>().FirstOrDefault();
+				var menuView = new MenuView { DataContext = new VM_MenuView() };
+				menuView.Show();
+				oldWindow?.Close();
+				return;
+			}
+
 			_onHome?.Invoke();
 		}
 	}
