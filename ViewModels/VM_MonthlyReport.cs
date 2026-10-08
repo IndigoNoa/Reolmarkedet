@@ -128,10 +128,15 @@ namespace Reolmarkedet.ViewModels
 		public ObservableCollection<Sales> PeriodSales { get; } = new ObservableCollection<Sales>();
 
 		// Repositories: bruges af hjælpemetoderne til at hente/gemme data
-		private readonly IRentersRepository _rentersRepository = new JsonRentersRepository();
-		private readonly ISalesRepository _salesRepository = new JsonSalesRepository();
-		private readonly IItemsRepository _itemsRepository = new JsonItemsRepository();
-		private readonly IMonthlyReportsRepository _monthlyReportsRepository = new JsonMonthlyReportsRepository();
+		/*private readonly IRentersRepository _rentersRepository = new JsonRentersRepository(); // Json
+		private readonly ISalesRepository _salesRepository = new JsonSalesRepository(); // Json
+		private readonly IItemsRepository _itemsRepository = new JsonItemsRepository(); // Json
+		private readonly IMonthlyReportsRepository _monthlyReportsRepository = new JsonMonthlyReportsRepository();*/ // Json
+
+		private readonly IRentersRepository _rentersRepository = new SqlRentersRepository(); // SQL
+		private readonly ISalesRepository _salesRepository = new SqlSalesRepository(); // SQL
+		private readonly IItemsRepository _itemsRepository = new SqlItemsRepository(); // SQL
+		private readonly IMonthlyReportsRepository _monthlyReportsRepository = new SqlMonthlyReportsRepository(); // SQL
 
 		// Commands
 		public ICommand CreateReportCommand { get; }
@@ -292,7 +297,8 @@ namespace Reolmarkedet.ViewModels
 		private void CalculateRenterBalance()
 		{
 			// Finder lejerens reoler
-			var shelvesRepository = new JsonShelvesRepository();
+			/*var shelvesRepository = new JsonShelvesRepository();*/ // JSON
+			var shelvesRepository = new SqlShelvesRepository(); // SQL
 			var renterShelfIDs = shelvesRepository.GetAll()
 				.Where(s => s.RenterID == RenterID)
 				.Select(s => s.ShelfID)

@@ -12,8 +12,8 @@ namespace Reolmarkedet.ViewModels
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			if (value is not string renterID) return "Ikke opgjort";
-
-			var reportsRepository = new JsonMonthlyReportsRepository();
+			var reportsRepository = new SqlMonthlyReportsRepository(); // SQL
+			/*var reportsRepository = new JsonMonthlyReportsRepository();*/ // JSON
 			bool isReported = reportsRepository.GetAll().Any(r => r.RenterID == renterID
 				&& r.ReportPeriod.Month == DateTime.Now.Month
 				&& r.ReportPeriod.Year == DateTime.Now.Year);

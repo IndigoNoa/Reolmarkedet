@@ -30,9 +30,12 @@ namespace Reolmarkedet.ViewModels
 		private string _thankYouMessage;
 		private DateTime _saleDate;
 		private string _servedBy;
-		private readonly IItemsRepository _itemsRepository = new JsonItemsRepository();
-		private readonly ISalesRepository _salesRepository = new JsonSalesRepository();
-		private readonly IPaymentsRepository _paymentsRepository = new JsonPaymentsRepository();
+		/*private readonly IItemsRepository _itemsRepository = new JsonItemsRepository(); // JSON
+		private readonly ISalesRepository _salesRepository = new JsonSalesRepository(); // JSON
+		private readonly IPaymentsRepository _paymentsRepository = new JsonPaymentsRepository();*/ // JSON
+		private readonly IItemsRepository _itemsRepository = new SqlItemsRepository(); // SQL
+		private readonly ISalesRepository _salesRepository = new SqlSalesRepository(); // SQL
+		private readonly IPaymentsRepository _paymentsRepository = new SqlPaymentsRepository(); // SQL
 
 		public string ItemID
 		{
