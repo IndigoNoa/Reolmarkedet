@@ -32,7 +32,9 @@ namespace Reolmarkedet.Repositories
 				});
 			}
 
-			return shelves;
+			return shelves
+			.OrderBy(s => int.TryParse(s.ShelfID, out int n) ? n : int.MaxValue) // Sikrer korrekt rækkefølge af nummerering af I reoloversigt
+			.ToList();
 		}
 
 		public void SaveAll(IEnumerable<Shelves> shelves)
