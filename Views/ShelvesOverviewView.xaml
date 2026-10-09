@@ -103,7 +103,7 @@
                         BorderBrush="#3A5A2A" BorderThickness="1"/>
 				<TextBlock Text="Ledig" Margin="6,0,30,0" VerticalAlignment="Center"/>
 
-				<Border Width="18" Height="18" Background="#E3DFDA"
+				<Border Width="18" Height="18" Background="OrangeRed"
                         BorderBrush="#3A5A2A" BorderThickness="1"/>
 				<TextBlock Text="Udlejet" Margin="6,0,30,0" VerticalAlignment="Center"/>
 
