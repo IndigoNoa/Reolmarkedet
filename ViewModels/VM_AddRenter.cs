@@ -126,22 +126,13 @@ namespace Reolmarkedet.ViewModels
 
 		public VM_AddRenter()
 		{
-			RenterNameInputCommand = new RelayCommand(ExecuteRenterNameInput);
-			RenterEmailInputCommand = new RelayCommand(ExecuteRenterEmailInput);
-			RenterPhoneInputCommand = new RelayCommand(ExecuteRenterPhoneInput);
-			RenterAddressInputCommand = new RelayCommand(ExecuteRenterAddressInput);
-			RenterShelvesAmountDropdownSelectionCommand = new RelayCommand(ExecuteRenterShelvesAmountDropdownSelection);
 			NextCommand = new RelayCommand(ExecuteNext);
 			ConfirmCommand = new RelayCommand(ExecuteConfirm);
 			HomeCommand = new RelayCommand(ExecuteHome);
 			SelectPaymentMethodCommand = new RelayCommand(param => ExecuteSelectPaymentMethod(param as string));
 		}
 
-		private void ExecuteRenterNameInput() { }
-		private void ExecuteRenterEmailInput() { }
-		private void ExecuteRenterPhoneInput() { }
-		private void ExecuteRenterAddressInput() { }
-		private void ExecuteRenterShelvesAmountDropdownSelection() { }
+		
 		private void ExecuteNext()
 		{
 			var oldWindow = Application.Current.Windows.OfType<AddRenterView>().FirstOrDefault();
