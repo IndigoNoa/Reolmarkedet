@@ -75,7 +75,7 @@
 
 								<Style.Triggers>
 									<DataTrigger Binding="{Binding ShelfStatus}" Value="Udlejet">
-										<Setter Property="Background" Value="#E3DFDA"/>
+										<Setter Property="Background" Value="OrangeRed"/>
 									</DataTrigger>
 									<DataTrigger Binding="{Binding ShelfStatus}" Value="Snart ledig / opsagt">
 										<Setter Property="Background" Value="#F7E7C6"/>

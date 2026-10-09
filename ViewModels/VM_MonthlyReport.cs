@@ -297,8 +297,7 @@ namespace Reolmarkedet.ViewModels
 		private void CalculateRenterBalance()
 		{
 			// Finder lejerens reoler
-			/*var shelvesRepository = new JsonShelvesRepository();*/ // JSON
-			var shelvesRepository = new SqlShelvesRepository(); // SQL
+			var shelvesRepository = new SqlShelvesRepository();
 			var renterShelfIDs = shelvesRepository.GetAll()
 				.Where(s => s.RenterID == RenterID)
 				.Select(s => s.ShelfID)
@@ -307,8 +306,13 @@ namespace Reolmarkedet.ViewModels
 			// Finder alle salg, der er sket på en af de reoler
 			var renterSales = PeriodSales.Where(s => renterShelfIDs.Contains(s.ShelfID)).ToList();
 
+			// Viser kun lejerens egne salg i tabellen
+			PeriodSales.Clear();
+			foreach (var sale in renterSales)
+				PeriodSales.Add(sale);
+
 			decimal totalSales = renterSales.Sum(s => s.ItemPrice);
-			Commission = totalSales * 0.10m;   // 10%, jf. jeres Hi-Fi
+			Commission = totalSales * 0.10m;   // 10% Komission
 
 			// Leje ud fra rabattrappen, baseret på antal reoler
 			int shelfCount = renterShelfIDs.Count;
@@ -321,7 +325,7 @@ namespace Reolmarkedet.ViewModels
 
 			RenterBalance = totalSales - Commission - Rent;
 		}
-		
+
 		// Metode, der tjekker vores "Opgjort/Ikke Opgjort logik", dog ville den primært blive brugt til efterudivkling, så dette er primært visuelt for at vise flow
 		private bool IsRenterReported(string renterID)
 		{
